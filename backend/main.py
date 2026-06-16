@@ -2,11 +2,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import pandas as pd
-import faiss
 import pickle
-import psycopg2
-import os
-from sentence_transformers import SentenceTransformer
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
 
 app = FastAPI(title="Legal Case AI", version="1.0")
 
@@ -26,17 +24,11 @@ with open("models/prediction_model.pkl", "rb") as f:
 with open("models/vectorizer.pkl", "rb") as f:
     vectorizer = pickle.load(f)
 
-index = faiss.read_index("models/case_index.faiss")
-embedder = SentenceTransformer('all-MiniLM-L6-v2')
-print("All models loaded!")
+# Precompute all case vectors for similarity search
+all_texts = (df['facts'] + " " + df['section'] + " " + df['court']).str.lower()
+all_vectors = vectorizer.transform(all_texts)
 
-def get_db():
-    return psycopg2.connect(
-        host="localhost",
-        database="legal_ai",
-        user=os.environ.get("USER"),
-        password=""
-    )
+print("All models loaded!")
 
 class CaseInput(BaseModel):
     facts: str
@@ -51,10 +43,11 @@ def predict_outcome(case_text):
     return prediction, confidence
 
 def find_similar_cases(case_text, top_k=3):
-    query_vec = embedder.encode([case_text]).astype('float32')
-    distances, indices = index.search(query_vec, top_k)
+    query_vec = vectorizer.transform([case_text])
+    similarities = cosine_similarity(query_vec, all_vectors)[0]
+    top_indices = similarities.argsort()[-top_k:][::-1]
     results = []
-    for idx in indices[0]:
+    for idx in top_indices:
         results.append({
             "title": df['title'][idx],
             "section": df['section'][idx],
@@ -76,20 +69,6 @@ def analyze_case(case: CaseInput):
         f"Similar to {c['title']} which ended in {c['outcome']}"
         for c in similar
     ]
-
-    try:
-        conn = get_db()
-        cur = conn.cursor()
-        cur.execute("""
-            INSERT INTO predictions (facts, section, court, predicted_outcome, confidence)
-            VALUES (%s, %s, %s, %s, %s)
-        """, (case.facts, case.section, case.court, prediction, f"{confidence}%"))
-        conn.commit()
-        cur.close()
-        conn.close()
-    except Exception as e:
-        print(f"DB error: {e}")
-
     return {
         "predicted_outcome": prediction,
         "confidence": f"{confidence}%",
@@ -102,29 +81,5 @@ def get_all_cases():
     return df[['case_id', 'title', 'section', 'outcome']].to_dict(orient="records")
 
 @app.get("/history")
-def get_prediction_history():
-    try:
-        conn = get_db()
-        cur = conn.cursor()
-        cur.execute("""
-            SELECT facts, section, court, predicted_outcome, confidence, created_at
-            FROM predictions
-            ORDER BY created_at DESC
-            LIMIT 20;
-        """)
-        rows = cur.fetchall()
-        cur.close()
-        conn.close()
-        return [
-            {
-                "facts": r[0],
-                "section": r[1],
-                "court": r[2],
-                "predicted_outcome": r[3],
-                "confidence": r[4],
-                "timestamp": str(r[5])
-            }
-            for r in rows
-        ]
-    except Exception as e:
-        return {"error": str(e)}
+def get_history():
+    return {"message": "History available in local version with PostgreSQL"}
