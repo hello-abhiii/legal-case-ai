@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+sentence-transformers
+faiss-cpu
+psycopg2-binary
+joblib
+scikit-learn
+numpy
+pandas
+pydantic

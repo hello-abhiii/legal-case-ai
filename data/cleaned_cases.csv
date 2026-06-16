@@ -1,0 +1,51 @@
+case_id,title,facts,section,court,outcome
+1,State vs Ramesh,accused was caught stealing a mobile phone from a shop,IPC 379,District Court,Conviction
+2,State vs Suresh,accused physically assaulted the complainant during a dispute,IPC 323,District Court,Acquittal
+3,State vs Mahesh,accused cheated contractor by taking advance and not delivering work,IPC 420,High Court,Conviction
+4,State vs Dinesh,accused stole a bicycle from parking area near market,IPC 379,District Court,Conviction
+5,State vs Rajesh,accused was found with stolen goods from nearby house,IPC 380,District Court,Conviction
+6,State vs Naresh,accused forged documents to obtain bank loan,IPC 468,High Court,Conviction
+7,State vs Kamlesh,accused threatened victim with weapon to extort money,IPC 506,District Court,Acquittal
+8,State vs Viresh,accused trespassed into private property at night,IPC 447,District Court,Acquittal
+9,State vs Ganesh,accused picked pocket of commuter in public bus,IPC 379,District Court,Conviction
+10,State vs Umesh,accused broke into shop and stole cash from drawer,IPC 380,District Court,Conviction
+11,State vs Prakash,accused was acquitted due to lack of evidence in assault case,IPC 323,District Court,Acquittal
+12,State vs Harish,accused stole gold jewellery from neighbour house,IPC 380,District Court,Conviction
+13,State vs Girish,accused forged signature on property documents,IPC 468,High Court,Conviction
+14,State vs Lokesh,accused cheated elderly woman of retirement savings,IPC 420,High Court,Conviction
+15,State vs Mukesh,accused assaulted police officer on duty,IPC 353,District Court,Conviction
+16,State vs Rakesh,accused was found innocent in robbery case,IPC 392,Sessions Court,Acquittal
+17,State vs Deepak,accused kidnapped minor for ransom,IPC 363,High Court,Conviction
+18,State vs Santosh,accused caused grievous hurt to neighbour,IPC 325,District Court,Conviction
+19,State vs Bhavesh,accused attempted to murder business partner,IPC 307,High Court,Conviction
+20,State vs Jignesh,accused was wrongly charged in theft case,IPC 379,District Court,Acquittal
+21,State vs Arvind,accused stole cattle from farmer field,IPC 379,District Court,Conviction
+22,State vs Pradeep,accused defrauded investors in fake scheme,IPC 420,High Court,Conviction
+23,State vs Nilesh,accused broke into car and stole valuables,IPC 380,District Court,Conviction
+24,State vs Sunil,accused threatened ex-wife with physical harm,IPC 506,District Court,Conviction
+25,State vs Anil,accused was acquitted in cheating case lack of proof,IPC 420,District Court,Acquittal
+26,State vs Vijay,accused pickpocketed tourist at railway station,IPC 379,District Court,Conviction
+27,State vs Ajay,accused forged medical certificates for insurance,IPC 468,High Court,Conviction
+28,State vs Sanjay,accused assaulted neighbour over property dispute,IPC 323,District Court,Conviction
+29,State vs Ranjit,accused was found not guilty in trespass case,IPC 447,District Court,Acquittal
+30,State vs Manjit,accused stole construction material from site,IPC 379,District Court,Conviction
+31,State vs Gurpreet,accused extorted money from shopkeeper,IPC 384,Sessions Court,Conviction
+32,State vs Harpreet,accused was acquitted in assault case,IPC 325,District Court,Acquittal
+33,State vs Balwinder,accused stole crops from agricultural land,IPC 379,District Court,Conviction
+34,State vs Kulwinder,accused cheated bank with fake documents,IPC 420,High Court,Conviction
+35,State vs Davinder,accused broke into school and stole equipment,IPC 380,District Court,Conviction
+36,State vs Satinder,accused was acquitted in kidnapping case,IPC 363,High Court,Acquittal
+37,State vs Paramjit,accused caused hurt to coworker at workplace,IPC 323,District Court,Conviction
+38,State vs Amarjit,accused forged land records for illegal possession,IPC 468,High Court,Conviction
+39,State vs Gurjit,accused stole from temple premises,IPC 380,District Court,Conviction
+40,State vs Navjot,accused threatened witness to change testimony,IPC 506,Sessions Court,Conviction
+41,State vs Jaspal,accused was acquitted in fraud case,IPC 420,District Court,Acquittal
+42,State vs Resham,accused robbed pedestrian at knifepoint,IPC 392,Sessions Court,Conviction
+43,State vs Bikram,accused stole motorcycle from parking lot,IPC 379,District Court,Conviction
+44,State vs Vikram,accused was acquitted in theft case insufficient evidence,IPC 379,District Court,Acquittal
+45,State vs Dharam,accused cheated business partner in property deal,IPC 420,High Court,Conviction
+46,State vs Karam,accused assaulted victim causing permanent injury,IPC 325,Sessions Court,Conviction
+47,State vs Shyam,accused was found not guilty in forgery case,IPC 468,High Court,Acquittal
+48,State vs Ram,accused stole electronics from warehouse,IPC 380,District Court,Conviction
+49,State vs Ghanshyam,accused kidnapped child from school,IPC 363,High Court,Conviction
+50,State vs Balram,accused was acquitted in robbery case,IPC 392,Sessions Court,Acquittal

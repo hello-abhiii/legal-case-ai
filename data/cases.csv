@@ -1,0 +1,11 @@
+case_id,title,facts,section,court,outcome
+1,State vs Ramesh,The accused was caught stealing a mobile phone from a shop,IPC 379,District Court,Conviction
+2,State vs Suresh,The accused assaulted a person during a road dispute,IPC 323,District Court,Acquittal
+3,State vs Mahesh,The accused cheated a customer by selling fake gold,IPC 420,High Court,Conviction
+4,State vs Dinesh,The accused was found with stolen vehicle parts,IPC 379,District Court,Conviction
+5,State vs Kamal,The accused broke into a house at night,IPC 457,High Court,Conviction
+6,State vs Vijay,The accused threatened a witness with harm,IPC 506,District Court,Acquittal
+7,State vs Ravi,The accused took bribe as a government officer,IPC 161,High Court,Conviction
+8,State vs Anil,The accused forged documents to get a bank loan,IPC 467,High Court,Conviction
+9,State vs Priya,The accused was accused of dowry harassment,IPC 498A,District Court,Acquittal
+10,State vs Gopal,The accused killed a person in self defence,IPC 302,Supreme Court,Acquittal

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Legal Case AI</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      color: #7dd3fc;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #94a3b8;
+      margin-bottom: 40px;
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 28px;
+      max-width: 700px;
+      margin: 0 auto 30px auto;
+      border: 1px solid #334155;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 12px;
+      color: #e2e8f0;
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #7dd3fc;
+    }
+
+    textarea { height: 100px; resize: vertical; }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #0ea5e9;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover { background: #0284c7; }
+    button:disabled { background: #334155; cursor: not-allowed; }
+
+    .result-card {
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 28px;
+      max-width: 700px;
+      margin: 0 auto;
+      border: 1px solid #334155;
+      display: none;
+    }
+
+    .outcome-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0f172a;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+    }
+
+    .outcome-label { font-size: 0.8rem; color: #94a3b8; }
+
+    .outcome-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #4ade80;
+    }
+
+    .outcome-value.acquittal { color: #f87171; }
+
+    .confidence {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #7dd3fc;
+    }
+
+    h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #94a3b8;
+      margin-bottom: 12px;
+    }
+
+    .case-item {
+      background: #0f172a;
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 10px;
+      border-left: 3px solid #0ea5e9;
+    }
+
+    .case-title { font-weight: 600; margin-bottom: 4px; }
+    .case-meta { font-size: 0.82rem; color: #94a3b8; }
+    .case-outcome { 
+      font-size: 0.8rem; 
+      font-weight: 600;
+      margin-top: 6px;
+      color: #4ade80;
+    }
+    .case-outcome.acquittal { color: #f87171; }
+
+    .explanation-item {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      padding: 8px 0;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .loading {
+      text-align: center;
+      color: #7dd3fc;
+      padding: 20px;
+      display: none;
+    }
+
+    .section-gap { margin-top: 24px; }
+  </style>
+</head>
+<body>
+
+  <h1>⚖️ Legal Case AI</h1>
+  <p class="subtitle">Predict case outcomes and find similar judgments using AI</p>
+
+  <div class="card">
+    <label>Case Facts</label>
+    <textarea id="facts" placeholder="Describe what happened in the case...">accused stole a bike from parking area</textarea>
+
+    <label>Legal Section</label>
+    <input id="section" type="text" placeholder="e.g. IPC 379" value="IPC 379" />
+
+    <label>Court Type</label>
+    <select id="court">
+      <option>District Court</option>
+      <option>High Court</option>
+      <option>Supreme Court</option>
+      <option>Sessions Court</option>
+    </select>
+
+    <button onclick="analyzeCase()" id="btn">🔍 Analyze Case</button>
+  </div>
+
+  <div class="loading" id="loading">⏳ Analyzing case...</div>
+
+  <div class="result-card" id="results">
+
+    <div class="outcome-box">
+      <div>
+        <div class="outcome-label">Predicted Outcome</div>
+        <div class="outcome-value" id="outcome-value">—</div>
+      </div>
+      <div style="text-align:right">
+        <div class="outcome-label">Confidence</div>
+        <div class="confidence" id="confidence-value">—</div>
+      </div>
+    </div>
+
+    <h3>📁 Similar Cases</h3>
+    <div id="similar-cases"></div>
+
+    <div class="section-gap">
+      <h3>💡 Explanation</h3>
+      <div id="explanation"></div>
+    </div>
+
+  </div>
+
+  <script>
+    async function analyzeCase() {
+      const facts = document.getElementById('facts').value.trim();
+      const section = document.getElementById('section').value.trim();
+      const court = document.getElementById('court').value;
+
+      if (!facts || !section) {
+        alert('Please fill in the case facts and legal section.');
+        return;
+      }
+
+      const btn = document.getElementById('btn');
+      btn.disabled = true;
+      btn.textContent = 'Analyzing...';
+      document.getElementById('loading').style.display = 'block';
+      document.getElementById('results').style.display = 'none';
+
+      try {
+        const res = await fetch('http://127.0.0.1:8000/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ facts, section, court })
+        });
+
+        const data = await res.json();
+
+        // Outcome
+        const outcomeEl = document.getElementById('outcome-value');
+        outcomeEl.textContent = data.predicted_outcome;
+        outcomeEl.className = 'outcome-value' + (data.predicted_outcome === 'Acquittal' ? ' acquittal' : '');
+
+        // Confidence
+        document.getElementById('confidence-value').textContent = data.confidence;
+
+        // Similar cases
+        const casesEl = document.getElementById('similar-cases');
+        casesEl.innerHTML = data.similar_cases.map(c => `
+          <div class="case-item">
+            <div class="case-title">${c.title}</div>
+            <div class="case-meta">${c.section} • ${c.facts}</div>
+            <div class="case-outcome ${c.outcome === 'Acquittal' ? 'acquittal' : ''}">
+              ${c.outcome}
+            </div>
+          </div>
+        `).join('');
+
+        // Explanation
+        const expEl = document.getElementById('explanation');
+        expEl.innerHTML = data.explanation.map(e => `
+          <div class="explanation-item">• ${e}</div>
+        `).join('');
+
+        document.getElementById('results').style.display = 'block';
+
+      } catch (err) {
+        alert('Error connecting to API. Make sure the backend is running!');
+        console.error(err);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '🔍 Analyze Case';
+        document.getElementById('loading').style.display = 'none';
+      }
+    }
+  </script>
+
+</body>
+</html>
