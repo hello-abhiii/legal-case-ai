@@ -1,174 +1,380 @@
+cat > /Users/abhinav/Desktop/legal_ai/frontend/index.html << 'EOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Legal Case AI</title>
+  <title>LegalAI — Court Judgment Prediction</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', sans-serif; background: #0a0f1e; color: #e2e8f0; min-height: 100vh; }
-    nav { background: #0f172a; border-bottom: 1px solid #1e293b; padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
-    .nav-logo { font-size: 1.3rem; font-weight: 700; color: #7dd3fc; }
-    .nav-links { display: flex; gap: 8px; }
-    .nav-btn { padding: 8px 18px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; font-weight: 500; background: transparent; color: #94a3b8; transition: all 0.2s; }
-    .nav-btn:hover { color: #e2e8f0; background: #1e293b; }
-    .nav-btn.active { background: #0ea5e9; color: white; }
-    .page { display: none; padding: 40px 20px; max-width: 800px; margin: 0 auto; }
-    .page.active { display: block; }
-    .hero { text-align: center; padding: 60px 20px 40px; }
-    .hero h1 { font-size: 2.8rem; font-weight: 800; color: #f1f5f9; margin-bottom: 12px; }
-    .hero h1 span { color: #0ea5e9; }
-    .hero p { color: #94a3b8; font-size: 1.05rem; margin-bottom: 32px; }
-    .hero-stats { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; }
-    .stat { text-align: center; }
-    .stat-value { font-size: 2rem; font-weight: 700; color: #0ea5e9; }
-    .stat-label { font-size: 0.8rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; }
-    .card { background: #0f172a; border-radius: 16px; padding: 28px; border: 1px solid #1e293b; margin-bottom: 24px; }
-    .card-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-bottom: 20px; font-weight: 600; }
-    label { display: block; margin-bottom: 6px; font-size: 0.82rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; }
-    textarea, input, select { width: 100%; background: #0a0f1e; border: 1px solid #1e293b; border-radius: 10px; padding: 12px 16px; color: #e2e8f0; font-size: 0.95rem; margin-bottom: 18px; outline: none; transition: border 0.2s; font-family: inherit; }
-    textarea:focus, input:focus, select:focus { border-color: #0ea5e9; }
-    textarea { height: 110px; resize: vertical; }
-    .btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #0ea5e9, #6366f1); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
-    .btn:hover { opacity: 0.9; }
-    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
-    .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-    .result-box { background: #0a0f1e; border-radius: 12px; padding: 20px; border: 1px solid #1e293b; text-align: center; }
-    .result-box-label { font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
-    .result-box-value { font-size: 1.8rem; font-weight: 700; }
-    .conviction { color: #f87171; }
-    .acquittal { color: #4ade80; }
-    .confidence-val { color: #0ea5e9; }
-    .conf-bar-wrap { margin-bottom: 24px; }
-    .conf-bar-label { display: flex; justify-content: space-between; font-size: 0.82rem; color: #64748b; margin-bottom: 6px; }
-    .conf-bar-bg { background: #1e293b; border-radius: 99px; height: 10px; overflow: hidden; }
-    .conf-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #0ea5e9, #6366f1); transition: width 0.6s ease; }
-    .case-item { background: #0a0f1e; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; border-left: 3px solid #0ea5e9; }
-    .case-title { font-weight: 600; margin-bottom: 4px; font-size: 0.95rem; }
-    .case-meta { font-size: 0.8rem; color: #64748b; margin-bottom: 6px; }
-    .badge { display: inline-block; padding: 2px 10px; border-radius: 99px; font-size: 0.75rem; font-weight: 600; }
-    .badge-conviction { background: #450a0a; color: #f87171; }
-    .badge-acquittal { background: #052e16; color: #4ade80; }
-    .exp-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid #1e293b; font-size: 0.88rem; color: #94a3b8; }
-    .exp-item:last-child { border-bottom: none; }
-    .exp-dot { width: 6px; height: 6px; border-radius: 50%; background: #0ea5e9; margin-top: 6px; flex-shrink: 0; }
-    .history-item { background: #0a0f1e; border-radius: 10px; padding: 16px; margin-bottom: 12px; border: 1px solid #1e293b; display: flex; justify-content: space-between; align-items: center; }
-    .history-facts { font-size: 0.88rem; color: #cbd5e1; margin-bottom: 4px; }
-    .history-meta { font-size: 0.78rem; color: #475569; }
-    .empty-state { text-align: center; color: #475569; padding: 40px; font-size: 0.95rem; }
-    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-    .stat-card { background: #0a0f1e; border-radius: 12px; padding: 20px; border: 1px solid #1e293b; text-align: center; }
-    .stat-card-value { font-size: 2.2rem; font-weight: 700; color: #0ea5e9; }
-    .stat-card-label { font-size: 0.78rem; color: #64748b; text-transform: uppercase; margin-top: 4px; }
-    .chart-wrap { position: relative; height: 260px; }
-    .spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid #ffffff44; border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; margin-right: 8px; vertical-align: middle; }
+    body { font-family: 'Inter', sans-serif; }
+    .playfair { font-family: 'Playfair Display', serif; }
+    .nav-link { transition: all 0.2s; }
+    .nav-link.active { border-bottom: 2px solid #1e3a5f; color: #1e3a5f; font-weight: 600; }
+    .btn-primary { background: linear-gradient(135deg, #1e3a5f, #2d5986); transition: all 0.2s; }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(30,58,95,0.3); }
+    .card-hover { transition: all 0.2s; }
+    .card-hover:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+    .conviction-badge { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+    .acquittal-badge { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+    .conf-bar { transition: width 0.8s cubic-bezier(0.4,0,0.2,1); }
+    .spinner { border: 3px solid #e5e7eb; border-top-color: #1e3a5f; border-radius: 50%; width: 20px; height: 20px; animation: spin 0.8s linear infinite; display: inline-block; vertical-align: middle; margin-right: 8px; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .hidden { display: none !important; }
+    .page { display: none; }
+    .page.active { display: block; }
+    .section-tag { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .fade-in { animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
-<body>
-<nav>
-  <div class="nav-logo">⚖️ Legal Case AI</div>
-  <div class="nav-links">
-    <button class="nav-btn active" onclick="showPage('analyze', this)">Analyze</button>
-    <button class="nav-btn" onclick="showPage('history', this)">History</button>
-    <button class="nav-btn" onclick="showPage('stats', this)">Statistics</button>
+<body class="bg-gray-50 min-h-screen">
+
+<!-- TOP BAR -->
+<div class="bg-[#1e3a5f] text-white text-xs py-2 px-6 text-center tracking-wide">
+  ⚖️ AI-Powered Legal Research Tool — For Academic & Research Purposes Only
+</div>
+
+<!-- NAVBAR -->
+<nav class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 bg-[#1e3a5f] rounded-lg flex items-center justify-center text-white font-bold text-lg">⚖</div>
+      <div>
+        <div class="playfair text-lg font-bold text-[#1e3a5f]">LegalAI</div>
+        <div class="text-xs text-gray-400 -mt-0.5">Court Judgment Prediction System</div>
+      </div>
+    </div>
+    <div class="flex gap-1">
+      <button onclick="showPage('analyze',this)" class="nav-link active px-4 py-2 text-sm text-gray-600 border-b-2 border-[#1e3a5f] text-[#1e3a5f] font-semibold">Analyze</button>
+      <button onclick="showPage('history',this)" class="nav-link px-4 py-2 text-sm text-gray-500 border-b-2 border-transparent">History</button>
+      <button onclick="showPage('stats',this)" class="nav-link px-4 py-2 text-sm text-gray-500 border-b-2 border-transparent">Statistics</button>
+      <button onclick="showPage('about',this)" class="nav-link px-4 py-2 text-sm text-gray-500 border-b-2 border-transparent">About</button>
+    </div>
   </div>
 </nav>
 
+<!-- ANALYZE PAGE -->
 <div class="page active" id="page-analyze">
-  <div class="hero">
-    <h1>Predict Legal <span>Outcomes</span></h1>
-    <p>AI-powered case analysis using Machine Learning and NLP</p>
-    <div class="hero-stats">
-      <div class="stat"><div class="stat-value">50+</div><div class="stat-label">Cases Trained</div></div>
-      <div class="stat"><div class="stat-value">78%</div><div class="stat-label">Accuracy</div></div>
-      <div class="stat"><div class="stat-value">3</div><div class="stat-label">Similar Cases</div></div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-title">Case Details</div>
-    <label>Case Facts</label>
-    <textarea id="facts" placeholder="Describe what happened...">accused stole a bike from parking area</textarea>
-    <label>Legal Section</label>
-    <input id="section" type="text" placeholder="e.g. IPC 379" value="IPC 379" />
-    <label>Court Type</label>
-    <select id="court">
-      <option>District Court</option>
-      <option>High Court</option>
-      <option>Supreme Court</option>
-      <option>Sessions Court</option>
-    </select>
-    <button class="btn" onclick="analyzeCase()" id="btn">🔍 Analyze Case</button>
-  </div>
-  <div id="results" class="hidden">
-    <div class="card">
-      <div class="card-title">Prediction Result</div>
-      <div class="result-grid">
-        <div class="result-box">
-          <div class="result-box-label">Predicted Outcome</div>
-          <div class="result-box-value" id="outcome-val">—</div>
+
+  <!-- HERO -->
+  <div class="bg-white border-b border-gray-100">
+    <div class="max-w-6xl mx-auto px-6 py-14 flex flex-col md:flex-row items-center gap-10">
+      <div class="flex-1">
+        <div class="inline-block bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full mb-4 border border-blue-100">
+          🎓 Academic Project — Information Retrieval & ML
         </div>
-        <div class="result-box">
-          <div class="result-box-label">Confidence</div>
-          <div class="result-box-value confidence-val" id="conf-val">—</div>
+        <h1 class="playfair text-4xl font-bold text-[#1e3a5f] mb-3 leading-tight">
+          Predict Legal Case<br/>Outcomes with AI
+        </h1>
+        <p class="text-gray-500 text-base mb-6 leading-relaxed">
+          Enter case details to get an AI-powered prediction of the likely outcome,
+          similar past judgments, and an explainable analysis.
+        </p>
+        <div class="flex gap-6">
+          <div class="text-center">
+            <div class="playfair text-2xl font-bold text-[#1e3a5f]">95%</div>
+            <div class="text-xs text-gray-400 mt-0.5">Accuracy</div>
+          </div>
+          <div class="w-px bg-gray-200"></div>
+          <div class="text-center">
+            <div class="playfair text-2xl font-bold text-[#1e3a5f]">66+</div>
+            <div class="text-xs text-gray-400 mt-0.5">Cases Trained</div>
+          </div>
+          <div class="w-px bg-gray-200"></div>
+          <div class="text-center">
+            <div class="playfair text-2xl font-bold text-[#1e3a5f]">10</div>
+            <div class="text-xs text-gray-400 mt-0.5">IPC Sections</div>
+          </div>
         </div>
       </div>
-      <div class="conf-bar-wrap">
-        <div class="conf-bar-label"><span>Confidence Level</span><span id="conf-pct">0%</span></div>
-        <div class="conf-bar-bg"><div class="conf-bar-fill" id="conf-bar" style="width:0%"></div></div>
+      <div class="flex-1 bg-gradient-to-br from-[#1e3a5f] to-[#2d5986] rounded-2xl p-6 text-white shadow-xl max-w-sm w-full">
+        <div class="text-xs font-semibold opacity-60 uppercase tracking-wider mb-3">Quick Example</div>
+        <div class="bg-white/10 rounded-lg p-3 mb-3 text-sm">
+          "Accused stole motorcycle from parking area near market"
+        </div>
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="text-xs opacity-60">Predicted Outcome</div>
+            <div class="text-lg font-bold text-red-300">Conviction</div>
+          </div>
+          <div>
+            <div class="text-xs opacity-60">Confidence</div>
+            <div class="text-lg font-bold text-green-300">85.2%</div>
+          </div>
+          <div>
+            <div class="text-xs opacity-60">Section</div>
+            <div class="text-lg font-bold">IPC 379</div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-title">📁 Similar Cases</div>
-      <div id="similar-cases"></div>
+  </div>
+
+  <!-- FORM + RESULTS -->
+  <div class="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-8">
+
+    <!-- INPUT FORM -->
+    <div>
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+        <h2 class="playfair text-xl font-bold text-[#1e3a5f] mb-1">Case Details</h2>
+        <p class="text-sm text-gray-400 mb-6">Fill in the details below to analyze the case</p>
+
+        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Case Facts</label>
+        <textarea id="facts" rows="5"
+          class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/20 focus:border-[#1e3a5f] resize-none mb-4"
+          placeholder="Describe what happened in the case...">accused stole a bike from parking area near market</textarea>
+
+        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Legal Section</label>
+        <input id="section" type="text" value="IPC 379"
+          class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/20 focus:border-[#1e3a5f] mb-4"
+          placeholder="e.g. IPC 379" />
+
+        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Court Type</label>
+        <select id="court"
+          class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/20 focus:border-[#1e3a5f] mb-6">
+          <option>District Court</option>
+          <option>Sessions Court</option>
+          <option>High Court</option>
+          <option>Supreme Court</option>
+        </select>
+
+        <!-- QUICK FILL BUTTONS -->
+        <div class="mb-6">
+          <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Quick Fill Examples</div>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="quickFill('accused stole gold chain from victim on road','IPC 379','District Court')"
+              class="text-xs px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-600 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-700 transition-all">
+              Theft
+            </button>
+            <button onclick="quickFill('accused cheated investors in fake scheme promising returns','IPC 420','High Court')"
+              class="text-xs px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-600 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-700 transition-all">
+              Cheating
+            </button>
+            <button onclick="quickFill('accused assaulted complainant during property dispute','IPC 323','District Court')"
+              class="text-xs px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-600 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-700 transition-all">
+              Assault
+            </button>
+            <button onclick="quickFill('accused forged land documents to transfer property illegally','IPC 468','High Court')"
+              class="text-xs px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-600 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-700 transition-all">
+              Forgery
+            </button>
+            <button onclick="quickFill('accused robbed pedestrian at knifepoint in isolated area','IPC 392','Sessions Court')"
+              class="text-xs px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-600 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-700 transition-all">
+              Robbery
+            </button>
+          </div>
+        </div>
+
+        <button onclick="analyzeCase()" id="btn"
+          class="btn-primary w-full text-white font-semibold py-3.5 rounded-xl text-sm shadow-md">
+          🔍 Analyze Case
+        </button>
+
+        <p class="text-xs text-gray-400 text-center mt-3">
+          Results are AI-generated estimates for research purposes only
+        </p>
+      </div>
     </div>
-    <div class="card">
-      <div class="card-title">💡 AI Explanation</div>
-      <div id="explanation"></div>
+
+    <!-- RESULTS -->
+    <div id="results-panel">
+      <!-- PLACEHOLDER -->
+      <div id="placeholder" class="bg-white rounded-2xl border border-dashed border-gray-200 h-full flex flex-col items-center justify-center p-10 text-center">
+        <div class="text-5xl mb-4">⚖️</div>
+        <div class="playfair text-lg font-bold text-gray-300 mb-2">No Analysis Yet</div>
+        <div class="text-sm text-gray-400">Fill in the case details and click Analyze Case to see the prediction</div>
+      </div>
+
+      <!-- ACTUAL RESULTS -->
+      <div id="results" class="hidden space-y-4 fade-in">
+
+        <!-- OUTCOME CARD -->
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="playfair text-lg font-bold text-[#1e3a5f]">Prediction Result</h3>
+            <span id="outcome-badge" class="text-sm font-bold px-4 py-1.5 rounded-full"></span>
+          </div>
+          <div class="grid grid-cols-2 gap-4 mb-5">
+            <div class="bg-gray-50 rounded-xl p-4">
+              <div class="text-xs text-gray-400 uppercase tracking-wider mb-1">Predicted Outcome</div>
+              <div id="outcome-val" class="text-2xl font-bold playfair"></div>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-4">
+              <div class="text-xs text-gray-400 uppercase tracking-wider mb-1">Confidence Score</div>
+              <div id="conf-val" class="text-2xl font-bold playfair text-[#1e3a5f]"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs text-gray-400 mb-1.5">
+              <span>Confidence Level</span>
+              <span id="conf-pct"></span>
+            </div>
+            <div class="bg-gray-100 rounded-full h-2.5 overflow-hidden">
+              <div id="conf-bar" class="conf-bar h-full rounded-full bg-gradient-to-r from-[#1e3a5f] to-blue-400" style="width:0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SIMILAR CASES -->
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+          <h3 class="playfair text-lg font-bold text-[#1e3a5f] mb-4">📁 Similar Past Cases</h3>
+          <div id="similar-cases" class="space-y-3"></div>
+        </div>
+
+        <!-- EXPLANATION -->
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+          <h3 class="playfair text-lg font-bold text-[#1e3a5f] mb-4">💡 AI Explanation</h3>
+          <div id="explanation" class="space-y-2"></div>
+          <div class="mt-4 p-3 bg-amber-50 border border-amber-100 rounded-lg text-xs text-amber-700">
+            ⚠️ This prediction is generated by an AI model for research purposes. Always consult a qualified legal professional for actual legal advice.
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
 
+<!-- HISTORY PAGE -->
 <div class="page" id="page-history">
-  <div class="card">
-    <div class="card-title">Recent Predictions</div>
-    <div id="history-list"><div class="empty-state">Analyze a case first to see history here.</div></div>
+  <div class="max-w-4xl mx-auto px-6 py-10">
+    <div class="mb-6">
+      <h2 class="playfair text-2xl font-bold text-[#1e3a5f]">Prediction History</h2>
+      <p class="text-sm text-gray-400 mt-1">Your recent case analyses</p>
+    </div>
+    <div class="bg-white rounded-2xl border border-gray-200 shadow-sm">
+      <div id="history-list" class="divide-y divide-gray-100"></div>
+    </div>
   </div>
 </div>
 
+<!-- STATS PAGE -->
 <div class="page" id="page-stats">
-  <div class="card">
-    <div class="card-title">Model Performance</div>
-    <div class="stats-grid">
-      <div class="stat-card"><div class="stat-card-value">78%</div><div class="stat-card-label">Accuracy</div></div>
-      <div class="stat-card"><div class="stat-card-value">73%</div><div class="stat-card-label">Precision</div></div>
-      <div class="stat-card"><div class="stat-card-value">78%</div><div class="stat-card-label">Recall</div></div>
-      <div class="stat-card"><div class="stat-card-value">71%</div><div class="stat-card-label">F1 Score</div></div>
+  <div class="max-w-4xl mx-auto px-6 py-10">
+    <div class="mb-6">
+      <h2 class="playfair text-2xl font-bold text-[#1e3a5f]">Model Statistics</h2>
+      <p class="text-sm text-gray-400 mt-1">Performance metrics of the AI prediction model</p>
+    </div>
+
+    <!-- METRIC CARDS -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 text-center card-hover">
+        <div class="playfair text-3xl font-bold text-[#1e3a5f]">95%</div>
+        <div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Accuracy</div>
+      </div>
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 text-center card-hover">
+        <div class="playfair text-3xl font-bold text-[#1e3a5f]">96%</div>
+        <div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Precision</div>
+      </div>
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 text-center card-hover">
+        <div class="playfair text-3xl font-bold text-[#1e3a5f]">95%</div>
+        <div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Recall</div>
+      </div>
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 text-center card-hover">
+        <div class="playfair text-3xl font-bold text-[#1e3a5f]">95%</div>
+        <div class="text-xs text-gray-400 uppercase tracking-wider mt-1">F1 Score</div>
+      </div>
+    </div>
+
+    <!-- CHARTS -->
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+        <h3 class="playfair text-lg font-bold text-[#1e3a5f] mb-4">Outcome Distribution</h3>
+        <div class="relative h-56"><canvas id="outcomeChart"></canvas></div>
+      </div>
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+        <h3 class="playfair text-lg font-bold text-[#1e3a5f] mb-4">Cases by IPC Section</h3>
+        <div class="relative h-56"><canvas id="sectionChart"></canvas></div>
+      </div>
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:col-span-2">
+        <h3 class="playfair text-lg font-bold text-[#1e3a5f] mb-4">Cross-Validation Accuracy per Fold</h3>
+        <div class="relative h-48"><canvas id="foldChart"></canvas></div>
+      </div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-title">Outcome Distribution</div>
-    <div class="chart-wrap"><canvas id="outcomeChart"></canvas></div>
-  </div>
-  <div class="card">
-    <div class="card-title">Cases by Legal Section</div>
-    <div class="chart-wrap"><canvas id="sectionChart"></canvas></div>
+</div>
+
+<!-- ABOUT PAGE -->
+<div class="page" id="page-about">
+  <div class="max-w-3xl mx-auto px-6 py-10">
+    <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
+      <div class="playfair text-2xl font-bold text-[#1e3a5f] mb-2">About This Project</div>
+      <div class="text-sm text-gray-400 mb-6">Academic Year 2026–2027 | Department of Information Retrieval & ML</div>
+
+      <div class="space-y-5 text-sm text-gray-600 leading-relaxed">
+        <p>This system assists legal professionals by leveraging <strong>Artificial Intelligence</strong> and <strong>Natural Language Processing</strong> to analyze legal cases and provide data-driven insights.</p>
+
+        <div>
+          <div class="font-semibold text-[#1e3a5f] mb-2">🛠 Technology Stack</div>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="bg-gray-50 rounded-lg px-3 py-2 text-xs">Python + FastAPI</div>
+            <div class="bg-gray-50 rounded-lg px-3 py-2 text-xs">Scikit-learn (ML Model)</div>
+            <div class="bg-gray-50 rounded-lg px-3 py-2 text-xs">TF-IDF Vectorization</div>
+            <div class="bg-gray-50 rounded-lg px-3 py-2 text-xs">Cosine Similarity Search</div>
+            <div class="bg-gray-50 rounded-lg px-3 py-2 text-xs">PostgreSQL Database</div>
+            <div class="bg-gray-50 rounded-lg px-3 py-2 text-xs">Render + GitHub Pages</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="font-semibold text-[#1e3a5f] mb-2">📊 Model Performance</div>
+          <p>The model achieves <strong>95% accuracy</strong> using 5-fold cross validation on 66 Indian court cases spanning 10 IPC sections including theft, cheating, assault, forgery, robbery and more.</p>
+        </div>
+
+        <div>
+          <div class="font-semibold text-[#1e3a5f] mb-2">⚠️ Disclaimer</div>
+          <p class="text-amber-700 bg-amber-50 border border-amber-100 rounded-lg p-3">This tool is designed as a <strong>decision-support system</strong> for research and academic purposes only. It does not replace legal professionals or judicial decision-making.</p>
+        </div>
+
+        <div class="flex gap-4 pt-2">
+          <a href="https://legal-case-ai.onrender.com/docs" target="_blank"
+            class="btn-primary text-white text-xs font-semibold px-4 py-2.5 rounded-lg">
+            📋 API Docs
+          </a>
+          <a href="https://github.com/hello-abhiii/legal-case-ai" target="_blank"
+            class="border border-gray-200 text-gray-600 text-xs font-semibold px-4 py-2.5 rounded-lg hover:bg-gray-50 transition-all">
+            💻 GitHub
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- FOOTER -->
+<footer class="border-t border-gray-200 bg-white mt-10">
+  <div class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between text-xs text-gray-400">
+    <div>© 2026 LegalAI — Academic Project | Dept. of IR & ML</div>
+    <div class="flex gap-4">
+      <a href="https://legal-case-ai.onrender.com" target="_blank" class="hover:text-[#1e3a5f]">API</a>
+      <a href="https://github.com/hello-abhiii/legal-case-ai" target="_blank" class="hover:text-[#1e3a5f]">GitHub</a>
+    </div>
+  </div>
+</footer>
 
 <script>
   const API = 'https://legal-case-ai.onrender.com';
-  let predictions = JSON.parse(localStorage.getItem('predictions') || '[]');
+  let predictions = JSON.parse(localStorage.getItem('legalai_predictions') || '[]');
 
   function showPage(name, btn) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.nav-link').forEach(b => {
+      b.classList.remove('active', 'border-[#1e3a5f]', 'text-[#1e3a5f]', 'font-semibold');
+      b.classList.add('border-transparent', 'text-gray-500');
+    });
     document.getElementById('page-' + name).classList.add('active');
-    btn.classList.add('active');
+    btn.classList.add('active', 'border-[#1e3a5f]', 'text-[#1e3a5f]', 'font-semibold');
+    btn.classList.remove('border-transparent', 'text-gray-500');
     if (name === 'history') renderHistory();
     if (name === 'stats') renderCharts();
+  }
+
+  function quickFill(facts, section, court) {
+    document.getElementById('facts').value = facts;
+    document.getElementById('section').value = section;
+    document.getElementById('court').value = court;
   }
 
   async function analyzeCase() {
@@ -176,10 +382,13 @@
     const section = document.getElementById('section').value.trim();
     const court = document.getElementById('court').value;
     if (!facts || !section) { alert('Please fill in facts and section.'); return; }
+
     const btn = document.getElementById('btn');
     btn.disabled = true;
     btn.innerHTML = '<span class="spinner"></span>Analyzing...';
+    document.getElementById('placeholder').classList.add('hidden');
     document.getElementById('results').classList.add('hidden');
+
     try {
       const res = await fetch(API + '/analyze', {
         method: 'POST',
@@ -187,26 +396,48 @@
         body: JSON.stringify({ facts, section, court })
       });
       const data = await res.json();
-      const outcomeEl = document.getElementById('outcome-val');
-      outcomeEl.textContent = data.predicted_outcome;
-      outcomeEl.className = 'result-box-value ' + (data.predicted_outcome === 'Conviction' ? 'conviction' : 'acquittal');
+      const isConviction = data.predicted_outcome === 'Conviction';
+
+      // Outcome
+      document.getElementById('outcome-val').textContent = data.predicted_outcome;
+      document.getElementById('outcome-val').className = `text-2xl font-bold playfair ${isConviction ? 'text-red-600' : 'text-green-600'}`;
+      document.getElementById('outcome-badge').textContent = data.predicted_outcome;
+      document.getElementById('outcome-badge').className = `text-sm font-bold px-4 py-1.5 rounded-full ${isConviction ? 'conviction-badge' : 'acquittal-badge'}`;
+
+      // Confidence
       const confNum = parseFloat(data.confidence);
       document.getElementById('conf-val').textContent = data.confidence;
       document.getElementById('conf-pct').textContent = data.confidence;
       setTimeout(() => document.getElementById('conf-bar').style.width = confNum + '%', 100);
+
+      // Similar cases
       document.getElementById('similar-cases').innerHTML = data.similar_cases.map(c => `
-        <div class="case-item">
-          <div class="case-title">${c.title}</div>
-          <div class="case-meta">${c.section} • ${c.facts}</div>
-          <span class="badge ${c.outcome === 'Conviction' ? 'badge-conviction' : 'badge-acquittal'}">${c.outcome}</span>
+        <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-xl border border-gray-100">
+          <div class="flex-1 min-w-0">
+            <div class="font-semibold text-sm text-gray-800 mb-0.5">${c.title}</div>
+            <div class="text-xs text-gray-500 truncate">${c.facts}</div>
+            <div class="flex gap-2 mt-2">
+              <span class="section-tag text-xs px-2 py-0.5 rounded-md font-medium">${c.section}</span>
+              <span class="text-xs px-2 py-0.5 rounded-md font-medium ${c.outcome === 'Conviction' ? 'conviction-badge' : 'acquittal-badge'}">${c.outcome}</span>
+            </div>
+          </div>
         </div>`).join('');
+
+      // Explanation
       document.getElementById('explanation').innerHTML = data.explanation.map(e => `
-        <div class="exp-item"><div class="exp-dot"></div><span>${e}</span></div>`).join('');
+        <div class="flex items-start gap-2 text-sm text-gray-600">
+          <span class="text-[#1e3a5f] mt-0.5">•</span>
+          <span>${e}</span>
+        </div>`).join('');
+
       document.getElementById('results').classList.remove('hidden');
+
+      // Save history
       predictions.unshift({ facts, section, court, outcome: data.predicted_outcome, confidence: data.confidence, time: new Date().toLocaleString() });
-      localStorage.setItem('predictions', JSON.stringify(predictions.slice(0, 20)));
+      localStorage.setItem('legalai_predictions', JSON.stringify(predictions.slice(0, 20)));
+
     } catch(e) {
-      alert('Error connecting to API. Make sure backend is running!');
+      alert('Error connecting to API. The server may be waking up — please wait 30 seconds and try again.');
     } finally {
       btn.disabled = false;
       btn.innerHTML = '🔍 Analyze Case';
@@ -215,14 +446,19 @@
 
   function renderHistory() {
     const el = document.getElementById('history-list');
-    if (!predictions.length) { el.innerHTML = '<div class="empty-state">No predictions yet. Analyze a case first!</div>'; return; }
+    if (!predictions.length) {
+      el.innerHTML = '<div class="p-10 text-center text-sm text-gray-400">No predictions yet. Analyze a case first!</div>';
+      return;
+    }
     el.innerHTML = predictions.map(p => `
-      <div class="history-item">
-        <div>
-          <div class="history-facts">${p.facts.substring(0, 60)}...</div>
-          <div class="history-meta">${p.section} • ${p.court} • ${p.time}</div>
+      <div class="flex items-center justify-between px-6 py-4 hover:bg-gray-50 transition-all">
+        <div class="flex-1 min-w-0 mr-4">
+          <div class="text-sm font-medium text-gray-800 truncate">${p.facts}</div>
+          <div class="text-xs text-gray-400 mt-0.5">${p.section} • ${p.court} • ${p.time}</div>
         </div>
-        <span class="badge ${p.outcome === 'Conviction' ? 'badge-conviction' : 'badge-acquittal'}">${p.outcome} ${p.confidence}</span>
+        <span class="text-xs font-bold px-3 py-1.5 rounded-full whitespace-nowrap ${p.outcome === 'Conviction' ? 'conviction-badge' : 'acquittal-badge'}">
+          ${p.outcome} ${p.confidence}
+        </span>
       </div>`).join('');
   }
 
@@ -230,27 +466,45 @@
   function renderCharts() {
     if (chartsDrawn) return;
     chartsDrawn = true;
+    const chartDefaults = { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { font: { family: 'Inter', size: 12 }, color: '#6b7280' } } } };
+
     new Chart(document.getElementById('outcomeChart'), {
       type: 'doughnut',
       data: {
         labels: ['Conviction', 'Acquittal'],
-        datasets: [{ data: [36, 14], backgroundColor: ['#f87171', '#4ade80'], borderWidth: 0 }]
+        datasets: [{ data: [50, 16], backgroundColor: ['#dc2626', '#16a34a'], borderWidth: 0, hoverOffset: 6 }]
       },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#94a3b8' } } } }
+      options: { ...chartDefaults, cutout: '65%' }
     });
+
     new Chart(document.getElementById('sectionChart'), {
       type: 'bar',
       data: {
-        labels: ['IPC 379', 'IPC 420', 'IPC 380', 'IPC 323', 'IPC 468', 'Other'],
-        datasets: [{ label: 'Cases', data: [12, 8, 7, 5, 5, 13], backgroundColor: '#0ea5e9', borderRadius: 6 }]
+        labels: ['IPC 379', 'IPC 420', 'IPC 323', 'IPC 380', 'IPC 468', 'IPC 392', 'Other'],
+        datasets: [{ data: [10, 10, 8, 6, 6, 4, 12], backgroundColor: '#1e3a5f', borderRadius: 6, hoverBackgroundColor: '#2d5986' }]
       },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
-        scales: { x: { ticks: { color: '#64748b' }, grid: { color: '#1e293b' } }, y: { ticks: { color: '#64748b' }, grid: { color: '#1e293b' } } }
-      }
+      options: { ...chartDefaults, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#9ca3af', font: { size: 11 } }, grid: { display: false } }, y: { ticks: { color: '#9ca3af' }, grid: { color: '#f3f4f6' } } } }
+    });
+
+    new Chart(document.getElementById('foldChart'), {
+      type: 'line',
+      data: {
+        labels: ['Fold 1', 'Fold 2', 'Fold 3', 'Fold 4', 'Fold 5'],
+        datasets: [{
+          label: 'Accuracy %',
+          data: [92.86, 92.31, 100, 100, 92.31],
+          borderColor: '#1e3a5f',
+          backgroundColor: 'rgba(30,58,95,0.08)',
+          pointBackgroundColor: '#1e3a5f',
+          pointRadius: 5,
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: { ...chartDefaults, scales: { y: { min: 85, max: 105, ticks: { color: '#9ca3af' }, grid: { color: '#f3f4f6' } }, x: { ticks: { color: '#9ca3af' }, grid: { display: false } } } }
     });
   }
 </script>
 </body>
 </html>
+HTMLEOF
