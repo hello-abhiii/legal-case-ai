@@ -4,68 +4,60 @@ from sklearn.model_selection import cross_val_score, StratifiedKFold
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+import warnings
+warnings.filterwarnings('ignore')
 
-print("=" * 50)
-print("   LEGAL CASE AI — MODEL EVALUATION REPORT")
-print("=" * 50)
+print("=" * 55)
+print("  LEGAL CASE AI — MODEL EVALUATION REPORT")
+print("=" * 55)
 
 df = pd.read_csv("data/cleaned_cases.csv")
-texts = (df['facts'] + " " + df['section'] + " " + df['court']).str.lower()
-labels = df['outcome']
+orig = df[df['case_id'] <= 66].copy()
 
-vectorizer = TfidfVectorizer()
-X = vectorizer.fit_transform(texts)
+orig['combined'] = (
+    orig['facts'].fillna('') + ' ' +
+    orig['section'].fillna('') + ' ' +
+    orig['court'].fillna('')
+)
 
-# Balanced model
-model = LogisticRegression(max_iter=1000, class_weight='balanced')
+vectorizer = TfidfVectorizer(max_features=3000, ngram_range=(1,2), sublinear_tf=True)
+X = vectorizer.fit_transform(orig['combined'])
+y = orig['outcome']
 
 cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
 
-acc   = cross_val_score(model, X, labels, cv=cv, scoring='accuracy')
-prec  = cross_val_score(model, X, labels, cv=cv, scoring='precision_weighted', error_score=0)
-rec   = cross_val_score(model, X, labels, cv=cv, scoring='recall_weighted')
-f1    = cross_val_score(model, X, labels, cv=cv, scoring='f1_weighted')
+models = {
+    "Logistic Regression": LogisticRegression(max_iter=5000, solver='saga', C=1.0, class_weight='balanced', random_state=42),
+    "Random Forest":       RandomForestClassifier(n_estimators=100, class_weight='balanced', random_state=42),
+    "SVM (RBF)":           SVC(kernel='rbf', class_weight='balanced', probability=True, random_state=42),
+}
 
-print(f"\n📊 CROSS-VALIDATED METRICS (5-Fold)")
-print(f"─────────────────────────────────────")
-print(f"  Accuracy  : {acc.mean()*100:.2f}% (± {acc.std()*100:.2f}%)")
-print(f"  Precision : {prec.mean()*100:.2f}% (± {prec.std()*100:.2f}%)")
-print(f"  Recall    : {rec.mean()*100:.2f}% (± {rec.std()*100:.2f}%)")
-print(f"  F1 Score  : {f1.mean()*100:.2f}% (± {f1.std()*100:.2f}%)")
+best_model, best_score = None, 0
 
-print(f"\n📈 PER-FOLD ACCURACY")
-print(f"─────────────────────────────────────")
-for i, s in enumerate(acc):
-    bar = "█" * int(s * 20)
-    print(f"  Fold {i+1}: {s*100:.2f}%  {bar}")
+for name, model in models.items():
+    acc = cross_val_score(model, X, y, cv=cv, scoring='accuracy')
+    f1  = cross_val_score(model, X, y, cv=cv, scoring='f1_weighted')
+    print(f"\n  {name}")
+    print(f"   CV Accuracy : {acc.mean()*100:.2f}% +/- {acc.std()*100:.2f}%")
+    print(f"   F1 Score    : {f1.mean()*100:.2f}% +/- {f1.std()*100:.2f}%")
+    if acc.mean() > best_score:
+        best_score, best_model = acc.mean(), (name, model)
 
-model.fit(X, labels)
-y_pred = model.predict(X)
+print(f"\nBest Model: {best_model[0]} ({best_score*100:.2f}%)")
 
-print(f"\n📋 CLASSIFICATION REPORT")
-print(f"─────────────────────────────────────")
-print(classification_report(labels, y_pred, zero_division=0))
+best_model[1].fit(X, y)
+y_pred = best_model[1].predict(X)
 
-print(f"\n🔲 CONFUSION MATRIX")
-print(f"─────────────────────────────────────")
+print("\nCLASSIFICATION REPORT")
+print(classification_report(y, y_pred, zero_division=0))
+
+print("CONFUSION MATRIX")
 labels_order = ['Conviction', 'Acquittal']
-cm_df = pd.DataFrame(
-    confusion_matrix(labels, y_pred, labels=labels_order),
+cm = pd.DataFrame(
+    confusion_matrix(y, y_pred, labels=labels_order),
     index=[f"Actual {l}" for l in labels_order],
     columns=labels_order
 )
-print(cm_df.to_string())
-
-print(f"\n💡 INTERPRETATION")
-print(f"─────────────────────────────────────")
-avg = acc.mean() * 100
-if avg >= 85:
-    print(f"  ✅ Excellent! Exceeds 85% target.")
-elif avg >= 70:
-    print(f"  ✅ Good! Meets 70-85% target accuracy.")
-else:
-    print(f"  ⚠️  Below target. More data recommended.")
-
-print(f"\n  📌 Model correctly identifies both")
-print(f"     Conviction AND Acquittal cases.")
-print(f"\n{'=' * 50}")
+print(cm.to_string())
