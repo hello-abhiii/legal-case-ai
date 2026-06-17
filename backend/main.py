@@ -1,10 +1,13 @@
+import re
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 import pandas as pd
 import pickle
-import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
+
+from backend.text_processing import combine_case_fields
 
 app = FastAPI(title="Legal Case AI", version="1.0")
 
@@ -17,6 +20,7 @@ app.add_middleware(
 
 print("Loading models...")
 df = pd.read_csv("data/cleaned_cases.csv")
+VALID_COURTS = set(df["court"].dropna().unique())
 
 with open("models/prediction_model.pkl", "rb") as f:
     model = pickle.load(f)
@@ -25,7 +29,10 @@ with open("models/vectorizer.pkl", "rb") as f:
     vectorizer = pickle.load(f)
 
 # Precompute all case vectors for similarity search
-all_texts = (df['facts'] + " " + df['section'] + " " + df['court']).str.lower()
+all_texts = [
+    combine_case_fields(row["facts"], row["section"], row["court"])
+    for _, row in df.iterrows()
+]
 all_vectors = vectorizer.transform(all_texts)
 
 print("All models loaded!")
@@ -34,6 +41,30 @@ class CaseInput(BaseModel):
     facts: str
     section: str
     court: str
+
+    @field_validator("facts")
+    @classmethod
+    def facts_must_be_substantial(cls, value: str) -> str:
+        if len(value.strip()) < 20:
+            raise ValueError("Facts must be at least 20 characters long.")
+        return value.strip()
+
+    @field_validator("section")
+    @classmethod
+    def section_must_look_like_ipc(cls, value: str) -> str:
+        section = value.strip().upper()
+        if not re.fullmatch(r"IPC\s+\d+[A-Z]?", section):
+            raise ValueError("Section must use the format 'IPC 302'.")
+        return section
+
+    @field_validator("court")
+    @classmethod
+    def court_must_be_known(cls, value: str) -> str:
+        court = value.strip()
+        if court not in VALID_COURTS:
+            allowed = ", ".join(sorted(VALID_COURTS))
+            raise ValueError(f"Court must be one of: {allowed}.")
+        return court
 
 def predict_outcome(case_text):
     vec = vectorizer.transform([case_text])
@@ -62,7 +93,7 @@ def home():
 
 @app.post("/analyze")
 def analyze_case(case: CaseInput):
-    combined = f"{case.facts} {case.section} {case.court}".lower()
+    combined = combine_case_fields(case.facts, case.section, case.court)
     prediction, confidence = predict_outcome(combined)
     similar = find_similar_cases(combined)
     explanation = [

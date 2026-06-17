@@ -1,2 +1,5 @@
 data/indian_legal_7000cases.csv
 models/case_index.faiss
+.DS_Store
+__pycache__/
+*.py[cod]

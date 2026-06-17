@@ -68,14 +68,14 @@ When a user enters a new case, the system:
 
 ## 📊 Model Performance
 
-Evaluated using **5-Fold Cross Validation** on 4,563 Indian court cases:
+Evaluated using **5-Fold Cross Validation** on the **66 clean curated prediction cases**:
 
 | Metric | Score |
 |---|---|
-| ✅ CV Accuracy | **89.56%** |
-| ✅ Precision | 95.90% |
-| ✅ Recall | 95.49% |
-| ✅ F1 Score | 95.19% |
+| ✅ CV Accuracy | **93.96%** |
+| ✅ Precision | 94.75% |
+| ✅ Recall | 93.96% |
+| ✅ F1 Score | 93.72% |
 
 ### Confusion Matrix
 
@@ -84,7 +84,7 @@ Evaluated using **5-Fold Cross Validation** on 4,563 Indian court cases:
 | Actual Conviction | 50 | 0 |
 | Actual Acquittal | 0 | 16 |
 
-> Target accuracy was 70–85%. Our model exceeds the target at **89.56% CV accuracy**.
+> Target accuracy was 70–85%. The prediction model exceeds the target at **93.96% CV accuracy** on the clean curated dataset.
 
 ---
 
@@ -136,12 +136,15 @@ legal_ai/
 │   └── index.html           # Dark theme web interface
 ├── docs/
 │   └── index.html           # GitHub Pages deployment
-├── evaluate.py              # Model evaluation script
-├── expand_dataset.py        # Dataset expansion script
-├── retrain_final.py         # Model retraining script
-├── download_dataset.py      # Dataset builder
-├── setup_db.py              # PostgreSQL setup
-├── import_cases.py          # Import cases to DB
+├── scripts/
+│   ├── train.py             # Model comparison + retraining
+│   ├── evaluate.py          # Model evaluation script
+│   ├── download_dataset.py  # Dataset builder
+│   ├── setup_db.py          # PostgreSQL setup
+│   ├── import_cases.py      # Import cases to DB
+│   └── legacy/              # Archived one-off data/scraper scripts
+├── tests/
+│   └── test_setup.py        # Dependency smoke check
 ├── requirements.txt
 └── README.md
 ```
@@ -175,13 +178,13 @@ pip install -r requirements.txt
 ### Step 4 — Set up PostgreSQL
 ```bash
 psql postgres -c "CREATE DATABASE legal_ai;"
-python3 setup_db.py
-python3 import_cases.py
+python3 scripts/setup_db.py
+python3 scripts/import_cases.py
 ```
 
 ### Step 5 — Train the model
 ```bash
-python3 retrain_final.py
+python3 scripts/train.py
 ```
 
 ### Step 6 — Run the backend
@@ -248,7 +251,7 @@ curl -X POST "https://legal-case-ai.onrender.com/analyze" \
 | Phase 5 | Feature Extraction (Dual TF-IDF) | ✅ Done |
 | Phase 6 | Similar Case Search Engine | ✅ Done |
 | Phase 7 | Outcome Prediction Model | ✅ Done |
-| Phase 8 | Model Evaluation (89.56% CV accuracy) | ✅ Done |
+| Phase 8 | Model Evaluation (93.96% CV accuracy) | ✅ Done |
 | Phase 9 | Explanation System | ✅ Done |
 | Phase 10 | FastAPI Backend | ✅ Done |
 | Phase 11 | PostgreSQL Database | ✅ Done |
