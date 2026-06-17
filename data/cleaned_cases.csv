@@ -1,51 +1,67 @@
 case_id,title,facts,section,court,outcome
-1,State vs Ramesh,accused was caught stealing a mobile phone from a shop,IPC 379,District Court,Conviction
-2,State vs Suresh,accused physically assaulted the complainant during a dispute,IPC 323,District Court,Acquittal
-3,State vs Mahesh,accused cheated contractor by taking advance and not delivering work,IPC 420,High Court,Conviction
-4,State vs Dinesh,accused stole a bicycle from parking area near market,IPC 379,District Court,Conviction
-5,State vs Rajesh,accused was found with stolen goods from nearby house,IPC 380,District Court,Conviction
-6,State vs Naresh,accused forged documents to obtain bank loan,IPC 468,High Court,Conviction
-7,State vs Kamlesh,accused threatened victim with weapon to extort money,IPC 506,District Court,Acquittal
-8,State vs Viresh,accused trespassed into private property at night,IPC 447,District Court,Acquittal
-9,State vs Ganesh,accused picked pocket of commuter in public bus,IPC 379,District Court,Conviction
-10,State vs Umesh,accused broke into shop and stole cash from drawer,IPC 380,District Court,Conviction
-11,State vs Prakash,accused was acquitted due to lack of evidence in assault case,IPC 323,District Court,Acquittal
-12,State vs Harish,accused stole gold jewellery from neighbour house,IPC 380,District Court,Conviction
-13,State vs Girish,accused forged signature on property documents,IPC 468,High Court,Conviction
-14,State vs Lokesh,accused cheated elderly woman of retirement savings,IPC 420,High Court,Conviction
-15,State vs Mukesh,accused assaulted police officer on duty,IPC 353,District Court,Conviction
-16,State vs Rakesh,accused was found innocent in robbery case,IPC 392,Sessions Court,Acquittal
-17,State vs Deepak,accused kidnapped minor for ransom,IPC 363,High Court,Conviction
-18,State vs Santosh,accused caused grievous hurt to neighbour,IPC 325,District Court,Conviction
-19,State vs Bhavesh,accused attempted to murder business partner,IPC 307,High Court,Conviction
-20,State vs Jignesh,accused was wrongly charged in theft case,IPC 379,District Court,Acquittal
-21,State vs Arvind,accused stole cattle from farmer field,IPC 379,District Court,Conviction
-22,State vs Pradeep,accused defrauded investors in fake scheme,IPC 420,High Court,Conviction
-23,State vs Nilesh,accused broke into car and stole valuables,IPC 380,District Court,Conviction
-24,State vs Sunil,accused threatened ex-wife with physical harm,IPC 506,District Court,Conviction
-25,State vs Anil,accused was acquitted in cheating case lack of proof,IPC 420,District Court,Acquittal
-26,State vs Vijay,accused pickpocketed tourist at railway station,IPC 379,District Court,Conviction
-27,State vs Ajay,accused forged medical certificates for insurance,IPC 468,High Court,Conviction
-28,State vs Sanjay,accused assaulted neighbour over property dispute,IPC 323,District Court,Conviction
-29,State vs Ranjit,accused was found not guilty in trespass case,IPC 447,District Court,Acquittal
-30,State vs Manjit,accused stole construction material from site,IPC 379,District Court,Conviction
-31,State vs Gurpreet,accused extorted money from shopkeeper,IPC 384,Sessions Court,Conviction
-32,State vs Harpreet,accused was acquitted in assault case,IPC 325,District Court,Acquittal
-33,State vs Balwinder,accused stole crops from agricultural land,IPC 379,District Court,Conviction
-34,State vs Kulwinder,accused cheated bank with fake documents,IPC 420,High Court,Conviction
-35,State vs Davinder,accused broke into school and stole equipment,IPC 380,District Court,Conviction
-36,State vs Satinder,accused was acquitted in kidnapping case,IPC 363,High Court,Acquittal
-37,State vs Paramjit,accused caused hurt to coworker at workplace,IPC 323,District Court,Conviction
-38,State vs Amarjit,accused forged land records for illegal possession,IPC 468,High Court,Conviction
-39,State vs Gurjit,accused stole from temple premises,IPC 380,District Court,Conviction
-40,State vs Navjot,accused threatened witness to change testimony,IPC 506,Sessions Court,Conviction
-41,State vs Jaspal,accused was acquitted in fraud case,IPC 420,District Court,Acquittal
-42,State vs Resham,accused robbed pedestrian at knifepoint,IPC 392,Sessions Court,Conviction
-43,State vs Bikram,accused stole motorcycle from parking lot,IPC 379,District Court,Conviction
-44,State vs Vikram,accused was acquitted in theft case insufficient evidence,IPC 379,District Court,Acquittal
-45,State vs Dharam,accused cheated business partner in property deal,IPC 420,High Court,Conviction
-46,State vs Karam,accused assaulted victim causing permanent injury,IPC 325,Sessions Court,Conviction
-47,State vs Shyam,accused was found not guilty in forgery case,IPC 468,High Court,Acquittal
-48,State vs Ram,accused stole electronics from warehouse,IPC 380,District Court,Conviction
-49,State vs Ghanshyam,accused kidnapped child from school,IPC 363,High Court,Conviction
-50,State vs Balram,accused was acquitted in robbery case,IPC 392,Sessions Court,Acquittal
+1,State vs Accused 1,accused was caught stealing mobile phone from complainant pocket in crowded market,IPC 379,District Court,Conviction
+2,State vs Accused 2,accused stole gold chain from victim while she was walking on road,IPC 379,District Court,Conviction
+3,State vs Accused 3,accused broke into vehicle and stole items kept inside,IPC 379,Sessions Court,Conviction
+4,State vs Accused 4,accused was found in possession of stolen motorcycle without valid documents,IPC 379,District Court,Conviction
+5,State vs Accused 5,accused allegedly stole money from employer but no direct evidence found,IPC 379,District Court,Acquittal
+6,State vs Accused 6,accused charged with theft but eyewitness testimony was contradictory,IPC 379,District Court,Acquittal
+7,State vs Accused 7,accused stole cattle from agricultural land at night causing loss to farmer,IPC 379,Sessions Court,Conviction
+8,State vs Accused 8,accused picked pocket of passenger in railway station CCTV evidence confirmed,IPC 379,District Court,Conviction
+9,State vs Accused 9,accused stole construction material from site watchman identified accused,IPC 379,District Court,Conviction
+10,State vs Accused 10,accused was wrongly identified in theft case alibi was established,IPC 379,District Court,Acquittal
+11,State vs Accused 11,accused cheated complainant by taking money for job placement and disappeared,IPC 420,Sessions Court,Conviction
+12,State vs Accused 12,accused issued cheque knowing account had insufficient funds to defraud,IPC 420,High Court,Conviction
+13,State vs Accused 13,accused sold fake property documents to victim and collected advance payment,IPC 420,High Court,Conviction
+14,State vs Accused 14,accused defrauded elderly couple by posing as bank official collecting deposits,IPC 420,Sessions Court,Conviction
+15,State vs Accused 15,accused charged with cheating but complainant failed to prove dishonest intention,IPC 420,District Court,Acquittal
+16,State vs Accused 16,accused ran fake educational institution collecting fees without providing services,IPC 420,High Court,Conviction
+17,State vs Accused 17,accused cheated investors in fake chit fund scheme promising high returns,IPC 420,Sessions Court,Conviction
+18,State vs Accused 18,accused took advance for supply of goods but never delivered causing loss,IPC 420,District Court,Conviction
+19,State vs Accused 19,accused in cheating case was acquitted due to lack of documentary evidence,IPC 420,District Court,Acquittal
+20,State vs Accused 20,accused misrepresented qualifications to obtain employment causing wrongful gain,IPC 420,Sessions Court,Conviction
+21,State vs Accused 21,accused assaulted complainant with fists during property dispute causing injuries,IPC 323,District Court,Conviction
+22,State vs Accused 22,accused slapped and punched victim outside shop witnesses corroborated incident,IPC 323,District Court,Conviction
+23,State vs Accused 23,accused caused hurt to neighbour during argument medical certificate produced,IPC 323,District Court,Conviction
+24,State vs Accused 24,accused charged with assault but injuries were minor and matter was compromised,IPC 323,District Court,Acquittal
+25,State vs Accused 25,accused hit complainant with stick during land boundary dispute injuries proved,IPC 323,Sessions Court,Conviction
+26,State vs Accused 26,accused was acting in self defence when hurt was caused to complainant,IPC 323,District Court,Acquittal
+27,State vs Accused 27,accused assaulted coworker at workplace security camera footage was produced,IPC 323,District Court,Conviction
+28,State vs Accused 28,accused caused hurt during road rage incident victim identified accused in court,IPC 323,District Court,Conviction
+29,State vs Accused 29,accused broke into house at night and stole jewellery and cash from almirah,IPC 380,Sessions Court,Conviction
+30,State vs Accused 30,accused entered shop after closing hours and stole electronic goods,IPC 380,Sessions Court,Conviction
+31,State vs Accused 31,accused stole from temple premises during night time watchman raised alarm,IPC 380,District Court,Conviction
+32,State vs Accused 32,accused broke into school and stole computers and projectors from classrooms,IPC 380,Sessions Court,Conviction
+33,State vs Accused 33,accused allegedly broke into house but no fingerprint evidence was found,IPC 380,Sessions Court,Acquittal
+34,State vs Accused 34,accused stole from warehouse goods identified and recovered from accused possession,IPC 380,Sessions Court,Conviction
+35,State vs Accused 35,accused forged land revenue records to illegally transfer property ownership,IPC 468,High Court,Conviction
+36,State vs Accused 36,accused created fake educational certificates to obtain government employment,IPC 468,High Court,Conviction
+37,State vs Accused 37,accused forged signature of deceased person on property documents,IPC 468,High Court,Conviction
+38,State vs Accused 38,accused forged bank documents to obtain loan amount of substantial sum,IPC 468,High Court,Conviction
+39,State vs Accused 39,accused charged with forgery but handwriting expert report was inconclusive,IPC 468,High Court,Acquittal
+40,State vs Accused 40,accused tampered with official records to conceal financial irregularities,IPC 468,High Court,Conviction
+41,State vs Accused 41,accused snatched gold chain from victim on road and fled on motorcycle,IPC 392,Sessions Court,Conviction
+42,State vs Accused 42,accused committed robbery at petrol pump threatening attendant with weapon,IPC 392,Sessions Court,Conviction
+43,State vs Accused 43,accused robbed pedestrian at knifepoint in isolated area at night,IPC 392,Sessions Court,Conviction
+44,State vs Accused 44,accused charged with robbery but victim could not identify accused in TI parade,IPC 392,Sessions Court,Acquittal
+45,State vs Accused 45,accused threatened to kill complainant over business dispute witnesses present,IPC 506,District Court,Conviction
+46,State vs Accused 46,accused sent threatening messages to victim screenshots produced as evidence,IPC 506,District Court,Conviction
+47,State vs Accused 47,accused threatened witness to change testimony in pending criminal case,IPC 506,Sessions Court,Conviction
+48,State vs Accused 48,accused gave threat to complainant but no evidence beyond sole testimony,IPC 506,District Court,Acquittal
+49,State vs Accused 49,accused kidnapped minor child for ransom demand recovery made by police,IPC 363,High Court,Conviction
+50,State vs Accused 50,accused lured minor from school premises and took to undisclosed location,IPC 363,High Court,Conviction
+51,State vs Accused 51,accused took child without permission of lawful guardian for illegal purpose,IPC 363,High Court,Conviction
+52,State vs Accused 52,accused charged with kidnapping but evidence showed child left voluntarily,IPC 363,High Court,Acquittal
+53,State vs Accused 53,accused murdered victim with sharp weapon motive was property dispute,IPC 302,High Court,Conviction
+54,State vs Accused 54,accused committed murder in premeditated manner eyewitnesses identified accused,IPC 302,High Court,Conviction
+55,State vs Accused 55,accused was convicted of culpable homicide not amounting to murder,IPC 302,High Court,Conviction
+56,State vs Accused 56,accused charged with murder but prosecution failed to establish guilt beyond doubt,IPC 302,High Court,Acquittal
+57,State vs Accused 57,accused caused grievous hurt to victim by attacking with iron rod fractures found,IPC 325,Sessions Court,Conviction
+58,State vs Accused 58,accused threw acid on victim causing permanent disfigurement medical evidence,IPC 325,High Court,Conviction
+59,State vs Accused 59,accused attacked victim with sharp weapon causing loss of eye medical report,IPC 325,Sessions Court,Conviction
+60,State vs Accused 60,accused caused grievous hurt in self defence situation court accepted defence,IPC 325,Sessions Court,Acquittal
+61,State vs Accused 61,accused trespassed into agricultural land and damaged standing crops,IPC 447,District Court,Conviction
+62,State vs Accused 62,accused entered private property with intent to commit offence guards saw,IPC 447,District Court,Conviction
+63,State vs Accused 63,accused trespassed into house but no dishonest intent was proved,IPC 447,District Court,Acquittal
+64,State vs Accused 64,accused extorted money from shopkeeper by threatening to harm family,IPC 384,Sessions Court,Conviction
+65,State vs Accused 65,accused demanded money from contractor threatening to disrupt work,IPC 384,Sessions Court,Conviction
+66,State vs Accused 66,accused charged with extortion but complainant did not support prosecution,IPC 384,Sessions Court,Acquittal
