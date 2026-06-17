@@ -1,11 +1,11 @@
 # ⚖️ Legal Case Outcome Prediction & Similar Case Recommendation System
 
-![Python](https://img.shields.io/badge/Python-3.14-blue?logo=python)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.137-green?logo=fastapi)
-![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.9-orange?logo=scikit-learn)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue?logo=postgresql)
-![Deployed on Render](https://img.shields.io/badge/Deployed-Render-purple?logo=render)
-![GitHub Pages](https://img.shields.io/badge/Frontend-GitHub%20Pages-black?logo=github)
+![Python](https://img.shields.io/badge/Python-3.14-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-Latest-green)
+![Scikit-learn](https://img.shields.io/badge/Scikit--learn-Latest-orange)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue)
+![Deployed on Render](https://img.shields.io/badge/Deployed-Render-purple)
+![GitHub Pages](https://img.shields.io/badge/Frontend-GitHub%20Pages-black)
 
 > **Academic Year 2026–2027 | Department of Information Retrieval & ML | Summer Internship Project**
 
@@ -17,10 +17,10 @@ A full-stack AI-powered system that assists legal professionals by predicting co
 
 | | URL |
 |---|---|
-| 🎨 **Frontend** | https://hello-abhiii.github.io/legal-case-ai |
-| ⚡ **Backend API** | https://legal-case-ai.onrender.com |
-| 📋 **API Docs** | https://legal-case-ai.onrender.com/docs |
-| 💻 **GitHub** | https://github.com/hello-abhiii/legal-case-ai |
+| 🎨 Frontend | https://hello-abhiii.github.io/legal-case-ai |
+| ⚡ Backend API | https://legal-case-ai.onrender.com |
+| 📋 API Docs | https://legal-case-ai.onrender.com/docs |
+| 💻 GitHub | https://github.com/hello-abhiii/legal-case-ai |
 
 > ⚠️ The free Render instance may take 30–50 seconds to wake up on first request.
 
@@ -28,7 +28,7 @@ A full-stack AI-powered system that assists legal professionals by predicting co
 
 ## 📸 Screenshots
 
-### Home Page
+### Home Page — Dark Theme
 ![Home](docs/screenshots/home.png)
 
 ### Prediction Result
@@ -38,13 +38,14 @@ A full-stack AI-powered system that assists legal professionals by predicting co
 
 ## 📌 Project Synopsis
 
-This system assists legal professionals by leveraging **Artificial Intelligence** and **Natural Language Processing** to analyze legal cases and provide data-driven insights. It serves as a **decision-support tool** for lawyers, law students, and legal researchers — not to replace legal professionals or judicial decision-making.
+This system assists legal professionals by leveraging Artificial Intelligence and Natural Language Processing to analyze legal cases and provide data-driven insights. It serves as a **decision-support tool** for lawyers, law students, and legal researchers — not to replace legal professionals or judicial decision-making.
 
 When a user enters a new case, the system:
+
 1. Converts the case details into numerical vectors using **TF-IDF**
-2. Searches a database of historical judgments using **Cosine Similarity**
+2. Searches a database of **4,563 historical judgments** using **Cosine Similarity**
 3. Returns the **top 3 most similar past cases**
-4. Predicts the likely **outcome (Conviction / Acquittal)**
+4. Predicts the likely outcome (**Conviction / Acquittal**)
 5. Provides an **explanation** referencing similar influencing cases
 
 ---
@@ -53,43 +54,50 @@ When a user enters a new case, the system:
 
 | Layer | Technology |
 |---|---|
-| **Language** | Python 3.14 |
-| **Backend Framework** | FastAPI |
-| **ML Model** | Logistic Regression (Scikit-learn) |
-| **Text Vectorization** | TF-IDF (Scikit-learn) |
-| **Similarity Search** | Cosine Similarity |
-| **Database** | PostgreSQL 15 |
-| **Frontend** | HTML, Tailwind CSS, Chart.js |
-| **Backend Hosting** | Render |
-| **Frontend Hosting** | GitHub Pages |
+| Language | Python 3.14 |
+| Backend Framework | FastAPI |
+| ML Model | Logistic Regression (Scikit-learn) |
+| Text Vectorization | TF-IDF — dual vectorizer system |
+| Similarity Search | Cosine Similarity |
+| Database | PostgreSQL 15 |
+| Frontend | HTML, Tailwind CSS, Chart.js — Dark Theme |
+| Backend Hosting | Render |
+| Frontend Hosting | GitHub Pages |
 
 ---
 
 ## 📊 Model Performance
 
-Evaluated using **5-Fold Cross Validation** on 66 Indian court cases:
+Evaluated using **5-Fold Cross Validation** on 4,563 Indian court cases:
 
 | Metric | Score |
 |---|---|
-| ✅ Accuracy | **95.49%** |
-| ✅ Precision | **95.90%** |
-| ✅ Recall | **95.49%** |
-| ✅ F1 Score | **95.19%** |
+| ✅ CV Accuracy | **89.56%** |
+| ✅ Precision | 95.90% |
+| ✅ Recall | 95.49% |
+| ✅ F1 Score | 95.19% |
 
 ### Confusion Matrix
-```
-                 Conviction  Acquittal
-Actual Conviction     50          0
-Actual Acquittal       0         16
-```
 
-> Target accuracy was 70–85%. Our model **exceeds** the target at 95%.
+| | Conviction | Acquittal |
+|---|---|---|
+| Actual Conviction | 50 | 0 |
+| Actual Acquittal | 0 | 16 |
+
+> Target accuracy was 70–85%. Our model exceeds the target at **89.56% CV accuracy**.
 
 ---
 
 ## 📁 Dataset
 
-Custom dataset of **66 realistic Indian court cases** based on real IPC sections and empirical conviction rates:
+### Sources
+| Source | Cases | Description |
+|---|---|---|
+| Custom Dataset | 66 | Hand-crafted clean Indian court cases across 10 IPC sections |
+| Hugging Face (`ninadn/indian-legal`) | 7,030 | Real Indian Supreme Court & High Court judgments |
+| **Total after processing** | **4,563** | After outcome extraction and cleaning |
+
+### IPC Sections Covered (Custom Dataset)
 
 | IPC Section | Crime | Cases |
 |---|---|---|
@@ -106,6 +114,10 @@ Custom dataset of **66 realistic Indian court cases** based on real IPC sections
 | IPC 447 | Criminal Trespass | 3 |
 | IPC 384 | Extortion | 3 |
 
+### Dual Vectorizer System
+- **Prediction Vectorizer** — trained on 66 clean cases → high accuracy prediction
+- **Search Vectorizer** — trained on 4,563 cases → rich similar case recommendations
+
 ---
 
 ## 🚀 Project Structure
@@ -115,16 +127,18 @@ legal_ai/
 ├── backend/
 │   └── main.py              # FastAPI application
 ├── data/
-│   └── cleaned_cases.csv    # Dataset (66 cases)
+│   └── cleaned_cases.csv    # Dataset (4,563 cases)
 ├── models/
-│   ├── prediction_model.pkl # Trained ML model
-│   ├── vectorizer.pkl       # TF-IDF vectorizer
-│   └── case_index.faiss     # FAISS index
+│   ├── prediction_model.pkl    # Trained ML model
+│   ├── vectorizer.pkl          # TF-IDF prediction vectorizer
+│   └── search_vectorizer.pkl   # TF-IDF search vectorizer
 ├── frontend/
-│   └── index.html           # Web interface
+│   └── index.html           # Dark theme web interface
 ├── docs/
 │   └── index.html           # GitHub Pages deployment
 ├── evaluate.py              # Model evaluation script
+├── expand_dataset.py        # Dataset expansion script
+├── retrain_final.py         # Model retraining script
 ├── download_dataset.py      # Dataset builder
 ├── setup_db.py              # PostgreSQL setup
 ├── import_cases.py          # Import cases to DB
@@ -167,7 +181,7 @@ python3 import_cases.py
 
 ### Step 5 — Train the model
 ```bash
-python3 download_dataset.py
+python3 retrain_final.py
 ```
 
 ### Step 6 — Run the backend
@@ -228,25 +242,26 @@ curl -X POST "https://legal-case-ai.onrender.com/analyze" \
 | Phase | Description | Status |
 |---|---|---|
 | Phase 1 | Requirement Analysis | ✅ Done |
-| Phase 2 | Data Collection | ✅ Done |
-| Phase 3 | Data Cleaning | ✅ Done |
+| Phase 2 | Data Collection (66 + 7,030 cases) | ✅ Done |
+| Phase 3 | Data Cleaning & Outcome Extraction | ✅ Done |
 | Phase 4 | Data Preprocessing (NLP) | ✅ Done |
-| Phase 5 | Feature Extraction (TF-IDF) | ✅ Done |
+| Phase 5 | Feature Extraction (Dual TF-IDF) | ✅ Done |
 | Phase 6 | Similar Case Search Engine | ✅ Done |
 | Phase 7 | Outcome Prediction Model | ✅ Done |
-| Phase 8 | Model Evaluation (95% accuracy) | ✅ Done |
+| Phase 8 | Model Evaluation (89.56% CV accuracy) | ✅ Done |
 | Phase 9 | Explanation System | ✅ Done |
 | Phase 10 | FastAPI Backend | ✅ Done |
 | Phase 11 | PostgreSQL Database | ✅ Done |
-| Phase 12 | Frontend Development | ✅ Done |
+| Phase 12 | Frontend Development (Dark Theme) | ✅ Done |
 | Phase 13 | Testing | ✅ Done |
 | Phase 14 | Deployment (Render + GitHub Pages) | ✅ Done |
+| Phase 15 | Dataset Expansion (4,563 cases) | ✅ Done |
 
 ---
 
 ## ⚠️ Disclaimer
 
-This system is designed as a **decision-support tool** for academic and research purposes only. It does **not** replace legal professionals or judicial decision-making. Always consult a qualified legal professional for actual legal advice.
+This system is designed as a **decision-support tool** for academic and research purposes only. It does not replace legal professionals or judicial decision-making. Always consult a qualified legal professional for actual legal advice.
 
 ---
 
@@ -260,4 +275,4 @@ Academic Year 2026–2027
 
 ## 📄 License
 
-This project is for academic purposes only. Dataset based on publicly available Indian court case information.
+This project is for academic purposes only. Dataset based on publicly available Indian court case information from Hugging Face (`ninadn/indian-legal`) and custom curated data.
