@@ -22,6 +22,7 @@ search_vectorizer = pickle.load(open("models/search_vectorizer.pkl", "rb"))
 
 all_texts = (df["facts"] + " " + df["section"] + " " + df["court"]).str.lower().fillna("")
 all_vectors = search_vectorizer.transform(all_texts)
+print(f"Search vectors built: {all_vectors.shape}")
 print(f"Loaded! Pred features: {len(vectorizer.vocabulary_)} | Search cases: {all_vectors.shape[0]}")
 
 class CaseInput(BaseModel):
@@ -74,3 +75,31 @@ def get_all_cases():
 @app.get("/history")
 def get_history():
     return {"message": "History available in local version with PostgreSQL"}
+cd /Users/abhinav/Desktop/legal_ai
+
+python -c "
+content = open('backend/main.py').read()
+
+old = '''model = pickle.load(open(\"models/prediction_model.pkl\", \"rb\"))
+vectorizer = pickle.load(open(\"models/vectorizer.pkl\", \"rb\"))
+search_vectorizer = pickle.load(open(\"models/search_vectorizer.pkl\", \"rb\"))
+
+all_texts = (df[\"facts\"] + \" \" + df[\"section\"] + \" \" + df[\"court\"]).str.lower().fillna(\"\")
+all_vectors = search_vectorizer.transform(all_texts)'''
+
+new = '''model = pickle.load(open(\"models/prediction_model.pkl\", \"rb\"))
+vectorizer = pickle.load(open(\"models/vectorizer.pkl\", \"rb\"))
+search_vectorizer = pickle.load(open(\"models/search_vectorizer.pkl\", \"rb\"))
+
+all_texts = (df[\"facts\"] + \" \" + df[\"section\"] + \" \" + df[\"court\"]).str.lower().fillna(\"\")
+all_vectors = search_vectorizer.transform(all_texts)
+print(f\"Search vectors built: {all_vectors.shape}\")'''
+
+content = content.replace(old, new)
+open('backend/main.py', 'w').write(content)
+print('Done!')
+"
+
+git add backend/main.py
+git commit -m "Build search vectors at runtime instead of FAISS file"
+git push origin main
