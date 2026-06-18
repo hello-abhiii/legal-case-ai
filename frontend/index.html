@@ -799,6 +799,11 @@
     let predictions = JSON.parse(localStorage.getItem('legalai_predictions') || '[]');
     let currentSimilarCases = [];
 
+    document.addEventListener('click', function(e) {
+      const btn = e.target.closest('[data-case-index]');
+      if (btn) openCaseModal(parseInt(btn.getAttribute('data-case-index')));
+    });
+
     function showPage(name, btn) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.nav-link').forEach(b => {
