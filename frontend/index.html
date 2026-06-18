@@ -841,7 +841,7 @@
       }[char]));
     }
 
-    function openCaseModal(index) {
+    window.openCaseModal = function(index) {
       const caseData = currentSimilarCases[index];
       if (!caseData) return;
 
@@ -858,14 +858,14 @@
       document.body.classList.add('overflow-hidden');
     }
 
-    function closeCaseModal() {
+    window.closeCaseModal = function() {
       const modal = document.getElementById('precedent-modal');
       modal.classList.remove('active');
       modal.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('overflow-hidden');
     }
 
-    function handleModalBackdrop(event) {
+    window.handleModalBackdrop = function(event) {
       if (event.target.id === 'precedent-modal') closeCaseModal();
     }
 
