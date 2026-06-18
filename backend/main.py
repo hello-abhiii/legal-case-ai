@@ -5,6 +5,7 @@ import pandas as pd
 import pickle
 import numpy as np
 import faiss
+import os
 
 app = FastAPI(title="Legal Case AI", version="2.0")
 
@@ -28,7 +29,22 @@ try:
     with open("models/search_vectorizer.pkl", "rb") as f:
         search_vectorizer = pickle.load(f)
 
-    faiss_index = faiss.read_index("models/case_index.faiss")
+    faiss_path = "models/case_index.faiss"
+    if os.path.exists(faiss_path):
+        print("Loading existing FAISS index...")
+        faiss_index = faiss.read_index(faiss_path)
+    else:
+        print("Building FAISS index from scratch (first run)...")
+        all_cases_combined = (
+            df['facts'].fillna('') + ' ' +
+            df['section'].fillna('') + ' ' +
+            df['court'].fillna('')
+        )
+        X2 = search_vectorizer.transform(all_cases_combined).toarray().astype('float32')
+        faiss_index = faiss.IndexFlatL2(X2.shape[1])
+        faiss_index.add(X2)
+        faiss.write_index(faiss_index, faiss_path)
+        print(f"FAISS index built and saved: {faiss_index.ntotal} cases")
 
     print(f"Models loaded! Cases in DB: {len(df)} | FAISS index: {faiss_index.ntotal}")
 

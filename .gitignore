@@ -3,3 +3,4 @@ models/case_index.faiss
 .DS_Store
 __pycache__/
 *.py[cod]
+models/case_index.faiss
