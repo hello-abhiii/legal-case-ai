@@ -28,7 +28,6 @@ try:
     with open("models/search_vectorizer.pkl", "rb") as f:
         search_vectorizer = pickle.load(f)
 
-    # Precompute search vectors once at startup (memory efficient sparse matrix)
     all_combined = (
         df['facts'].fillna('') + ' ' +
         df['section'].fillna('') + ' ' +
@@ -42,17 +41,6 @@ except Exception as e:
     print(f"ERROR loading models: {e}")
     raise RuntimeError(f"Failed to load models: {e}")
 
-VALID_SECTIONS = [
-    "IPC 302", "IPC 304", "IPC 307", "IPC 376", "IPC 379",
-    "IPC 380", "IPC 392", "IPC 395", "IPC 420", "IPC 498A",
-    "IPC 506", "IPC 34"
-]
-
-VALID_COURTS = [
-    "Sessions Court", "High Court", "Supreme Court",
-    "District Court", "Magistrate Court"
-]
-
 class CaseInput(BaseModel):
     facts: str
     section: str
@@ -65,16 +53,16 @@ class CaseInput(BaseModel):
         return v.strip()
 
     @validator('section')
-    def section_must_be_valid(cls, v):
-        if v not in VALID_SECTIONS:
-            raise ValueError(f'Invalid section. Must be one of: {", ".join(VALID_SECTIONS)}')
-        return v
+    def section_not_empty(cls, v):
+        if not v or not v.strip():
+            raise ValueError('Section cannot be empty')
+        return v.strip()
 
     @validator('court')
-    def court_must_be_valid(cls, v):
-        if v not in VALID_COURTS:
-            raise ValueError(f'Invalid court. Must be one of: {", ".join(VALID_COURTS)}')
-        return v
+    def court_not_empty(cls, v):
+        if not v or not v.strip():
+            raise ValueError('Court cannot be empty')
+        return v.strip()
 
 def predict_outcome(case_text: str):
     vec = vectorizer.transform([case_text])
@@ -103,9 +91,7 @@ def home():
     return {
         "message": "Legal Case AI is running!",
         "version": "2.0",
-        "total_cases": len(df),
-        "valid_sections": VALID_SECTIONS,
-        "valid_courts": VALID_COURTS
+        "total_cases": len(df)
     }
 
 @app.post("/analyze")
@@ -133,14 +119,6 @@ def get_all_cases():
         return df[['case_id', 'title', 'section', 'outcome']].to_dict(orient="records")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Could not fetch cases: {str(e)}")
-
-@app.get("/sections")
-def get_valid_sections():
-    return {"sections": VALID_SECTIONS}
-
-@app.get("/courts")
-def get_valid_courts():
-    return {"courts": VALID_COURTS}
 
 @app.get("/history")
 def get_history():
