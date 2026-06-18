@@ -313,7 +313,7 @@
 
             <div class="flex gap-8 items-center bg-dark-800/50 p-4 rounded-2xl border border-dark-600 w-max glass-card">
               <div>
-                <div class="font-heading text-2xl font-bold text-white">89.5%</div>
+                <div class="font-heading text-2xl font-bold text-white">94.0%</div>
                 <div class="text-[10px] text-gray-500 uppercase tracking-widest font-semibold mt-1">Accuracy</div>
               </div>
               <div class="w-px h-10 bg-dark-600"></div>
@@ -323,8 +323,8 @@
               </div>
               <div class="w-px h-10 bg-dark-600"></div>
               <div>
-                <div class="font-heading text-2xl font-bold text-white">10</div>
-                <div class="text-[10px] text-gray-500 uppercase tracking-widest font-semibold mt-1">IPC Sections</div>
+                <div class="font-heading text-2xl font-bold text-white">100</div>
+                <div class="text-[10px] text-gray-500 uppercase tracking-widest font-semibold mt-1">Curated IPC Cases</div>
               </div>
             </div>
           </div>
@@ -592,7 +592,7 @@
           <div
             class="glass-card rounded-2xl border border-dark-600 p-6 text-center card-hover relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-b from-accent-500/5 to-transparent"></div>
-            <div class="font-heading text-4xl font-bold text-white mb-1 relative z-10">96.0%</div>
+            <div class="font-heading text-4xl font-bold text-white mb-1 relative z-10">94.6%</div>
             <div class="text-[11px] text-gray-500 uppercase tracking-widest font-semibold relative z-10">Precision</div>
           </div>
           <div
@@ -604,7 +604,7 @@
           <div
             class="glass-card rounded-2xl border border-dark-600 p-6 text-center card-hover relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-b from-accent-500/5 to-transparent"></div>
-            <div class="font-heading text-4xl font-bold text-white mb-1 relative z-10">94.0%</div>
+            <div class="font-heading text-4xl font-bold text-white mb-1 relative z-10">93.7%</div>
             <div class="text-[11px] text-gray-500 uppercase tracking-widest font-semibold relative z-10">F1 Score</div>
           </div>
         </div>
@@ -677,7 +677,7 @@
                     Performance
                   </div>
                   <p class="text-xs text-gray-400">Achieves <strong>~94.0% accuracy</strong> on cross-validation sets
-                    using a curated dataset of Indian court judgments spanning multiple IPC sections.</p>
+                    using 100 curated Indian IPC cases across 29 IPC sections.</p>
                 </div>
               </div>
 
@@ -934,7 +934,7 @@
         data: {
           labels: ['IPC 379', 'IPC 420', 'IPC 323', 'IPC 380', 'IPC 468', 'IPC 392', 'Other'],
           datasets: [{
-            data: [10, 10, 8, 6, 6, 4, 12],
+            data: [10, 10, 8, 6, 6, 4, 56],
             backgroundColor: '#3b82f6', // primary-500
             borderRadius: 6,
             hoverBackgroundColor: '#60a5fa' // primary-400
@@ -962,7 +962,7 @@
           labels: ['Fold 1', 'Fold 2', 'Fold 3', 'Fold 4', 'Fold 5'],
           datasets: [{
             label: 'Accuracy %',
-            data: [92.86, 92.31, 100, 100, 92.31],
+            data: [95, 100, 90, 100, 85],
             borderColor: '#8b5cf6', // accent-500
             backgroundColor: gradient,
             pointBackgroundColor: '#121214',

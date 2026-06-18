@@ -20,9 +20,8 @@ print("=" * 55)
 print("  LEGAL CASE AI — MODEL EVALUATION REPORT")
 print("=" * 55)
 
-all_cases = pd.read_csv("data/cleaned_cases.csv")
-df = all_cases[all_cases["case_id"] <= 66].copy()
-print(f"Evaluating prediction model on {len(df)} clean curated cases")
+df = pd.read_csv("data/cases.csv")
+print(f"Evaluating prediction model on {len(df)} clean curated IPC cases")
 
 texts = [
     combine_case_fields(row["facts"], row["section"], row["court"])

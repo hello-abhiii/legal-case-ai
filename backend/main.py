@@ -20,6 +20,7 @@ app.add_middleware(
 
 print("Loading models...")
 df = pd.read_csv("data/cleaned_cases.csv")
+prediction_df = pd.read_csv("data/cases.csv")
 VALID_COURTS = set(df["court"].dropna().unique())
 
 with open("models/prediction_model.pkl", "rb") as f:
@@ -110,6 +111,15 @@ def analyze_case(case: CaseInput):
 @app.get("/cases")
 def get_all_cases():
     return df[['case_id', 'title', 'section', 'outcome']].to_dict(orient="records")
+
+@app.get("/stats")
+def get_stats():
+    return {
+        "prediction_cases": len(prediction_df),
+        "ipc_sections": prediction_df["section"].nunique(),
+        "search_cases": len(df),
+        "outcomes": prediction_df["outcome"].value_counts().to_dict(),
+    }
 
 @app.get("/history")
 def get_history():

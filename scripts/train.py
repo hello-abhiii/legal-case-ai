@@ -26,9 +26,9 @@ def build_texts(df):
     ]
 
 
+prediction_cases = pd.read_csv("data/cases.csv")
 all_cases = pd.read_csv("data/cleaned_cases.csv")
-orig = all_cases[all_cases["case_id"] <= 66].copy()
-print(f"Clean cases: {len(orig)} | Total cases: {len(all_cases)}")
+print(f"Prediction cases: {len(prediction_cases)} | Search cases: {len(all_cases)}")
 
 prediction_vectorizer = TfidfVectorizer(
     max_features=5000,
@@ -36,8 +36,8 @@ prediction_vectorizer = TfidfVectorizer(
     min_df=2,
     sublinear_tf=True,
 )
-X = prediction_vectorizer.fit_transform(build_texts(orig))
-y = orig["outcome"]
+X = prediction_vectorizer.fit_transform(build_texts(prediction_cases))
+y = prediction_cases["outcome"]
 
 cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
 models = {

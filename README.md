@@ -68,23 +68,23 @@ When a user enters a new case, the system:
 
 ## 📊 Model Performance
 
-Evaluated using **5-Fold Cross Validation** on the **66 clean curated prediction cases**:
+Evaluated using **5-Fold Cross Validation** on the **100 clean curated IPC prediction cases**:
 
 | Metric | Score |
 |---|---|
-| ✅ CV Accuracy | **93.96%** |
-| ✅ Precision | 94.75% |
-| ✅ Recall | 93.96% |
+| ✅ CV Accuracy | **94.00%** |
+| ✅ Precision | 94.63% |
+| ✅ Recall | 94.00% |
 | ✅ F1 Score | 93.72% |
 
 ### Confusion Matrix
 
 | | Conviction | Acquittal |
 |---|---|---|
-| Actual Conviction | 50 | 0 |
-| Actual Acquittal | 0 | 16 |
+| Actual Conviction | 67 | 0 |
+| Actual Acquittal | 0 | 33 |
 
-> Target accuracy was 70–85%. The prediction model exceeds the target at **93.96% CV accuracy** on the clean curated dataset.
+> Target accuracy was 70–85%. The prediction model exceeds the target at **94.00% CV accuracy** on the clean curated IPC dataset.
 
 ---
 
@@ -93,11 +93,11 @@ Evaluated using **5-Fold Cross Validation** on the **66 clean curated prediction
 ### Sources
 | Source | Cases | Description |
 |---|---|---|
-| Custom Dataset | 66 | Hand-crafted clean Indian court cases across 10 IPC sections |
+| Custom Dataset | 100 | Hand-crafted clean Indian court cases across 29 IPC sections |
 | Hugging Face (`ninadn/indian-legal`) | 7,030 | Real Indian Supreme Court & High Court judgments |
 | **Total after processing** | **4,563** | After outcome extraction and cleaning |
 
-### IPC Sections Covered (Custom Dataset)
+### Curated IPC Prediction Cases
 
 | IPC Section | Crime | Cases |
 |---|---|---|
@@ -113,9 +113,10 @@ Evaluated using **5-Fold Cross Validation** on the **66 clean curated prediction
 | IPC 325 | Grievous Hurt | 4 |
 | IPC 447 | Criminal Trespass | 3 |
 | IPC 384 | Extortion | 3 |
+| Other IPC Sections | Attempt to murder, abduction, cruelty, conspiracy, forgery, food adulteration and more | 34 |
 
 ### Dual Vectorizer System
-- **Prediction Vectorizer** — trained on 66 clean cases → high accuracy prediction
+- **Prediction Vectorizer** — trained on 100 clean curated IPC cases → high accuracy prediction
 - **Search Vectorizer** — trained on 4,563 cases → rich similar case recommendations
 
 ---
@@ -245,13 +246,13 @@ curl -X POST "https://legal-case-ai.onrender.com/analyze" \
 | Phase | Description | Status |
 |---|---|---|
 | Phase 1 | Requirement Analysis | ✅ Done |
-| Phase 2 | Data Collection (66 + 7,030 cases) | ✅ Done |
+| Phase 2 | Data Collection (100 curated IPC + 7,030 source cases) | ✅ Done |
 | Phase 3 | Data Cleaning & Outcome Extraction | ✅ Done |
 | Phase 4 | Data Preprocessing (NLP) | ✅ Done |
 | Phase 5 | Feature Extraction (Dual TF-IDF) | ✅ Done |
 | Phase 6 | Similar Case Search Engine | ✅ Done |
 | Phase 7 | Outcome Prediction Model | ✅ Done |
-| Phase 8 | Model Evaluation (93.96% CV accuracy) | ✅ Done |
+| Phase 8 | Model Evaluation (94.00% CV accuracy) | ✅ Done |
 | Phase 9 | Explanation System | ✅ Done |
 | Phase 10 | FastAPI Backend | ✅ Done |
 | Phase 11 | PostgreSQL Database | ✅ Done |
