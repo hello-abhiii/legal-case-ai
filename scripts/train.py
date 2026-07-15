@@ -26,7 +26,7 @@ def build_texts(df):
     ]
 
 
-prediction_cases = pd.read_csv("data/cases.csv")
+prediction_cases = pd.read_csv("data/cleaned_cases.csv")
 all_cases = pd.read_csv("data/cleaned_cases.csv")
 print(f"Prediction cases: {len(prediction_cases)} | Search cases: {len(all_cases)}")
 
