@@ -5,3 +5,4 @@ __pycache__/
 *.py[cod]
 models/case_index.faiss
 legal_data/
+__pycache__/
