@@ -56,7 +56,7 @@ When a user enters a new case, the system:
 |---|---|
 | Language | Python 3.14 |
 | Backend Framework | FastAPI |
-| ML Model | Logistic Regression (Scikit-learn) |
+| ML Model | RandomForest (auto-selected via 3-model comparison) |
 | Text Vectorization | TF-IDF — dual vectorizer system |
 | Similarity Search | Cosine Similarity |
 | Database | PostgreSQL 15 |
@@ -68,23 +68,17 @@ When a user enters a new case, the system:
 
 ## 📊 Model Performance
 
-Evaluated using **5-Fold Cross Validation** on the **100 clean curated IPC prediction cases**:
+Evaluated using **5-Fold Cross Validation** on the **full 4,563-case dataset** (real Indian court judgments, not just the curated set):
 
-| Metric | Score |
-|---|---|
-| ✅ CV Accuracy | **94.00%** |
-| ✅ Precision | 94.63% |
-| ✅ Recall | 94.00% |
-| ✅ F1 Score | 93.72% |
-
-### Confusion Matrix
-
-| | Conviction | Acquittal |
+| Model | CV Accuracy | Weighted F1 |
 |---|---|---|
-| Actual Conviction | 67 | 0 |
-| Actual Acquittal | 0 | 33 |
+| Logistic Regression | 70.17% | 70.18% |
+| **Random Forest (selected)** | **75.56%** | **75.54%** |
+| SVM (RBF kernel) | 70.70% | 70.73% |
 
-> Target accuracy was 70–85%. The prediction model exceeds the target at **94.00% CV accuracy** on the clean curated IPC dataset.
+> The pipeline automatically trains all three models and selects the best by weighted F1. Random Forest currently wins and is what's saved to `models/prediction_model.pkl`.
+>
+> Earlier versions of this README reported 94% accuracy — that number came from evaluating on only 100 hand-curated cases. The 75.56% figure above is the honest result on the full, messier real-world dataset and is the one that should be cited going forward.
 
 ---
 
@@ -116,8 +110,8 @@ Evaluated using **5-Fold Cross Validation** on the **100 clean curated IPC predi
 | Other IPC Sections | Attempt to murder, abduction, cruelty, conspiracy, forgery, food adulteration and more | 34 |
 
 ### Dual Vectorizer System
-- **Prediction Vectorizer** — trained on 100 clean curated IPC cases → high accuracy prediction
-- **Search Vectorizer** — trained on 4,563 cases → rich similar case recommendations
+- **Prediction Vectorizer** — now trained on the full 4,563-case dataset (previously only 100 curated cases)
+- **Search Vectorizer** — trained on the same 4,563 cases for similar case recommendations
 
 ---
 
