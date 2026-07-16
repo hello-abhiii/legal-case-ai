@@ -1,0 +1,31 @@
+{
+  "model_name": "RandomForest",
+  "accuracy": 75.56,
+  "precision": 75.54,
+  "recall": 75.56,
+  "f1_score": 75.55,
+  "cv_fold_accuracies": [
+    74.48,
+    76.78,
+    77.77,
+    75.44,
+    73.36
+  ],
+  "total_cases": 4563,
+  "prediction_cases": 4563,
+  "ipc_sections": 983,
+  "outcome_distribution": {
+    "Conviction": 2450,
+    "Acquittal": 2113
+  },
+  "section_distribution": {
+    "IPC 1": 290,
+    "IPC 3": 224,
+    "IPC 2": 215,
+    "IPC General": 171,
+    "IPC 302": 134,
+    "IPC 5": 108,
+    "Other": 3421
+  },
+  "trained_at": "2026-07-16T06:37:11.245184+00:00"
+}

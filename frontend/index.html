@@ -555,17 +555,17 @@
               <!-- Mini metrics counts dashboard -->
               <div style="display: inline-flex; gap: 24px; background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.03); padding: 14px 28px; border-radius: var(--border-radius-md); width: fit-content; margin-top: 10px;">
                 <div>
-                  <div style="font-size: 18px; font-weight: 700; color: #fff; font-family: var(--font-heading);">94.0%</div>
+                  <div id="hero-f1" style="font-size: 18px; font-weight: 700; color: #fff; font-family: var(--font-heading);">94.0%</div>
                   <div style="font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;">F1 Accuracy</div>
                 </div>
                 <div style="width: 1px; background: rgba(255,255,255,0.08);"></div>
                 <div>
-                  <div style="font-size: 18px; font-weight: 700; color: #fff; font-family: var(--font-heading);">4.5k+</div>
+                  <div id="hero-db-cases" style="font-size: 18px; font-weight: 700; color: #fff; font-family: var(--font-heading);">4.5k+</div>
                   <div style="font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;">DB Cases</div>
                 </div>
                 <div style="width: 1px; background: rgba(255,255,255,0.08);"></div>
                 <div>
-                  <div style="font-size: 18px; font-weight: 700; color: #fff; font-family: var(--font-heading);">29</div>
+                  <div id="hero-ipc-sections" style="font-size: 18px; font-weight: 700; color: #fff; font-family: var(--font-heading);">29</div>
                   <div style="font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;">IPC Sections</div>
                 </div>
               </div>
@@ -788,7 +788,7 @@
                   <div style="display: flex; justify-content: center; margin-bottom: 14px; color: var(--accent-blue);">
                     <i data-lucide="percent" style="width: 18px; height: 18px;"></i>
                   </div>
-                  <div style="font-size: 28px; font-weight: 700; color: #fff; font-family: var(--font-heading); margin: 0 0 4px;">94.0%</div>
+                  <div id="stat-accuracy" style="font-size: 28px; font-weight: 700; color: #fff; font-family: var(--font-heading); margin: 0 0 4px;">94.0%</div>
                   <div style="font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Model Accuracy</div>
                   <div style="font-size: 10px; color: var(--text-muted);">Cross Validated</div>
                 </div>
@@ -798,7 +798,7 @@
                   <div style="display: flex; justify-content: center; margin-bottom: 14px; color: var(--accent-purple);">
                     <i data-lucide="trending-up" style="width: 18px; height: 18px;"></i>
                   </div>
-                  <div style="font-size: 28px; font-weight: 700; color: #fff; font-family: var(--font-heading); margin: 0 0 4px;">94.6%</div>
+                  <div id="stat-precision" style="font-size: 28px; font-weight: 700; color: #fff; font-family: var(--font-heading); margin: 0 0 4px;">94.6%</div>
                   <div style="font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Model Precision</div>
                   <div style="font-size: 10px; color: var(--text-muted);">IPC Evaluation</div>
                 </div>
@@ -808,7 +808,7 @@
                   <div style="display: flex; justify-content: center; margin-bottom: 14px; color: var(--accent-blue);">
                     <i data-lucide="bar-chart-2" style="width: 18px; height: 18px;"></i>
                   </div>
-                  <div style="font-size: 28px; font-weight: 700; color: #fff; font-family: var(--font-heading); margin: 0 0 4px;">94.0%</div>
+                  <div id="stat-recall" style="font-size: 28px; font-weight: 700; color: #fff; font-family: var(--font-heading); margin: 0 0 4px;">94.0%</div>
                   <div style="font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Model Recall</div>
                   <div style="font-size: 10px; color: var(--text-muted);">True Positive</div>
                 </div>
@@ -818,7 +818,7 @@
                   <div style="display: flex; justify-content: center; margin-bottom: 14px; color: var(--accent-purple);">
                     <i data-lucide="users" style="width: 18px; height: 18px;"></i>
                   </div>
-                  <div style="font-size: 28px; font-weight: 700; color: #fff; font-family: var(--font-heading); margin: 0 0 4px;">4.5k+</div>
+                  <div id="stat-trained-cases" style="font-size: 28px; font-weight: 700; color: #fff; font-family: var(--font-heading); margin: 0 0 4px;">4.5k+</div>
                   <div style="font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Trained Cases</div>
                   <div style="font-size: 10px; color: var(--text-muted);">Curated Database</div>
                 </div>
@@ -899,8 +899,8 @@
                     <div>
                       <h4 style="font-size: 13px; font-weight: 600; color: #fff; margin: 0 0 4px;">Model Performance</h4>
                       <p style="font-size: 12px; color: var(--text-secondary); margin: 0; line-height: 1.6;">
-                        Achieves a <strong>~94.0% average cross-validation accuracy</strong> on testing folds containing 100 
-                        manually curated IPC trial summaries across 29 specific Indian Penal Code sections.
+                        Achieves a <strong>~<span id="about-accuracy">94.0</span>% average cross-validation accuracy</strong> on testing folds containing <span id="about-case-count">100</span> 
+                        curated Indian trial summaries across <span id="about-ipc-count">29</span> Indian Penal Code sections.
                       </p>
                     </div>
                   </div>
@@ -993,7 +993,54 @@
       let activeObjectState = 'gavel';
       let outcomeState = null;
       let selectedPrecedentState = null;
-      
+
+      // Fallback numbers shown until /metrics loads (or if it fails, e.g. Render cold-starting).
+      let modelMetrics = {
+        accuracy: 94.0, precision: 94.6, recall: 94.0, f1_score: 94.0,
+        cv_fold_accuracies: [95, 100, 90, 100, 85],
+        total_cases: 4563, prediction_cases: 100, ipc_sections: 29,
+        outcome_distribution: { Conviction: 50, Acquittal: 16 },
+        section_distribution: { 'IPC 379': 10, 'IPC 420': 10, 'IPC 323': 8, 'IPC 380': 6, 'IPC 468': 6, 'IPC 392': 4, Other: 56 },
+      };
+
+      function formatCaseCount(n) {
+        return n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k+' : String(n);
+      }
+
+      // Pulls the latest evaluation numbers written by scripts/train.py (via
+      // backend's GET /metrics) so the site never shows stale hardcoded stats.
+      async function loadMetrics() {
+        try {
+          const res = await fetch(`${API_ENDPOINT}/metrics`);
+          if (!res.ok) throw new Error(`Metrics request failed: ${res.status}`);
+          modelMetrics = { ...modelMetrics, ...(await res.json()) };
+        } catch (err) {
+          console.warn('Could not load live metrics, using fallback values:', err);
+        }
+        renderMetrics();
+      }
+
+      function renderMetrics() {
+        const m = modelMetrics;
+        const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+
+        set('hero-f1', `${m.f1_score}%`);
+        set('hero-db-cases', formatCaseCount(m.total_cases));
+        set('hero-ipc-sections', m.ipc_sections);
+
+        set('stat-accuracy', `${m.accuracy}%`);
+        set('stat-precision', `${m.precision}%`);
+        set('stat-recall', `${m.recall}%`);
+        set('stat-trained-cases', formatCaseCount(m.total_cases));
+
+        set('about-accuracy', m.accuracy);
+        set('about-case-count', m.prediction_cases);
+        set('about-ipc-count', m.ipc_sections);
+
+        // Charts on the Stats page read from modelMetrics too - refresh them if built already.
+        if (outcomeChart || sectionChart || accuracyChart) initCharts();
+      }
+
       // Initialize Lucide Icons
       lucide.createIcons();
 
@@ -1356,13 +1403,15 @@
         };
 
         // 1. Outcome Doughnut Chart
+        const outcomeLabels = Object.keys(modelMetrics.outcome_distribution);
+        const outcomeValues = Object.values(modelMetrics.outcome_distribution);
         const doughnutCtx = document.getElementById('outcome-chart').getContext('2d');
         outcomeChart = new Chart(doughnutCtx, {
           type: 'doughnut',
           data: {
-            labels: ['Conviction', 'Acquittal'],
+            labels: outcomeLabels,
             datasets: [{
-              data: [50, 16],
+              data: outcomeValues,
               backgroundColor: ['#ef4444', '#10b981'],
               borderWidth: 2,
               borderColor: '#030303',
@@ -1386,14 +1435,16 @@
         });
 
         // 2. Cases Bar Chart
+        const sectionLabels = Object.keys(modelMetrics.section_distribution);
+        const sectionValues = Object.values(modelMetrics.section_distribution);
         const barCtx = document.getElementById('section-chart').getContext('2d');
         sectionChart = new Chart(barCtx, {
           type: 'bar',
           data: {
-            labels: ['IPC 379', 'IPC 420', 'IPC 323', 'IPC 380', 'IPC 468', 'IPC 392', 'Other'],
+            labels: sectionLabels,
             datasets: [{
               label: 'Number of Cases',
-              data: [10, 10, 8, 6, 6, 4, 56],
+              data: sectionValues,
               backgroundColor: '#3b82f6',
               borderRadius: 8,
               hoverBackgroundColor: '#60a5fa',
@@ -1420,13 +1471,14 @@
         purpleGradient.addColorStop(0, 'rgba(139, 92, 246, 0.25)');
         purpleGradient.addColorStop(1, 'rgba(139, 92, 246, 0.0)');
 
+        const foldLabels = modelMetrics.cv_fold_accuracies.map((_, i) => `Fold ${i + 1}`);
         accuracyChart = new Chart(lineCtx, {
           type: 'line',
           data: {
-            labels: ['Fold 1', 'Fold 2', 'Fold 3', 'Fold 4', 'Fold 5'],
+            labels: foldLabels,
             datasets: [{
               label: 'Accuracy %',
-              data: [95, 100, 90, 100, 85],
+              data: modelMetrics.cv_fold_accuracies,
               borderColor: '#8b5cf6',
               backgroundColor: purpleGradient,
               pointBackgroundColor: '#030303',
@@ -1441,7 +1493,7 @@
           options: {
             ...commonOptions,
             scales: {
-              y: { min: 80, max: 105, grid: { color: 'rgba(255, 255, 255, 0.02)' }, ticks: { color: '#a1a1aa' } },
+              y: { min: Math.max(0, Math.min(...modelMetrics.cv_fold_accuracies) - 15), max: 100, grid: { color: 'rgba(255, 255, 255, 0.02)' }, ticks: { color: '#a1a1aa' } },
               x: { grid: { display: false }, ticks: { color: '#a1a1aa' } }
             }
           }
@@ -1968,6 +2020,2033 @@
       // Initialize ThreeJS once page loads
       window.addEventListener('DOMContentLoaded', () => {
         initThree();
+        loadMetrics();
+      });
+    </script>
+  </body>
+</html><!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LegalAI — Court Judgment Prediction System</title>
+    <meta name="description" content="An academic decision-support utility using Machine Learning and Natural Language Processing to predict legal case outcomes." />
+    
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- External Script CDNs -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.244.0/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Glassmorphic Style system -->
+    <style>
+      :root {
+        --bg-color: #030303;
+        --card-bg: rgba(255, 255, 255, 0.015);
+        --card-border: rgba(255, 255, 255, 0.045);
+        --card-border-hover: rgba(255, 255, 255, 0.09);
+        
+        --primary-glow: rgba(59, 130, 246, 0.15);
+        --secondary-glow: rgba(139, 92, 246, 0.15);
+        
+        --text-primary: #f4f4f5;
+        --text-secondary: #a1a1aa;
+        --text-muted: #52525b;
+        
+        --accent-blue: #3b82f6;
+        --accent-purple: #8b5cf6;
+        --accent-green: #10b981;
+        --accent-red: #ef4444;
+        
+        --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        --font-heading: 'Space Grotesk', -apple-system, sans-serif;
+        
+        --border-radius-lg: 24px;
+        --border-radius-md: 16px;
+        --border-radius-sm: 10px;
+      }
+
+      /* Base Body Setup */
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-primary);
+        font-family: var(--font-sans);
+        overflow-x: hidden;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg-color);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 99px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      /* Mesh Grid Background */
+      .ambient-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        pointer-events: none;
+        background: radial-gradient(circle at 50% 50%, #080808 0%, #030303 100%);
+        overflow: hidden;
+      }
+
+      .ambient-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+          linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+        background-size: 50px 50px;
+        mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 85%);
+        -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 85%);
+      }
+
+      /* Glowing Background Blobs */
+      .glow-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(140px);
+        opacity: 0.25;
+        mix-blend-mode: screen;
+        pointer-events: none;
+        transition: all 1s ease-in-out;
+      }
+
+      .glow-blue {
+        background: var(--accent-blue);
+        width: 500px;
+        height: 500px;
+        top: -150px;
+        left: -150px;
+        animation: float-blob-1 12s infinite alternate;
+      }
+
+      .glow-purple {
+        background: var(--accent-purple);
+        width: 600px;
+        height: 600px;
+        bottom: -200px;
+        right: -100px;
+        animation: float-blob-2 15s infinite alternate;
+      }
+
+      .glow-center {
+        background: var(--accent-blue);
+        width: 400px;
+        height: 400px;
+        top: 40%;
+        left: 30%;
+        opacity: 0.12;
+        filter: blur(160px);
+      }
+
+      @keyframes float-blob-1 {
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(60px, 40px) scale(1.1); }
+      }
+
+      @keyframes float-blob-2 {
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(-80px, -50px) scale(0.9); }
+      }
+
+      /* Glassmorphism Elements */
+      .glass-panel {
+        background: var(--card-bg);
+        backdrop-filter: blur(24px) saturate(120%);
+        -webkit-backdrop-filter: blur(24px) saturate(120%);
+        border: 1px solid var(--card-border);
+        border-radius: var(--border-radius-lg);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .glass-panel-hover:hover {
+        border-color: var(--card-border-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4), 
+                    0 0 30px 0 rgba(59, 130, 246, 0.03);
+      }
+
+      .glass-nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(3, 3, 3, 0.65);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--card-border);
+      }
+
+      /* Typography Styling */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        margin-top: 0;
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, #fff 30%, #a1a1aa 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .glow-gradient-text {
+        background: linear-gradient(90deg, #60a5fa, #c084fc, #60a5fa);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shine-text 5s linear infinite;
+      }
+
+      @keyframes shine-text {
+        to { background-position: 200% center; }
+      }
+
+      /* Inputs & Form Controls */
+      .glass-input {
+        width: 100%;
+        box-sizing: border-box;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: var(--border-radius-md);
+        padding: 14px 18px;
+        color: var(--text-primary);
+        font-family: var(--font-sans);
+        font-size: 14px;
+        outline: none;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .glass-input:focus {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: rgba(59, 130, 246, 0.5);
+        box-shadow: 0 0 20px 0 rgba(59, 130, 246, 0.1);
+      }
+
+      /* Premium Buttons */
+      .premium-btn {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--text-primary);
+        border-radius: var(--border-radius-md);
+        padding: 14px 28px;
+        font-family: var(--font-sans);
+        font-weight: 500;
+        font-size: 14px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        text-decoration: none;
+      }
+
+      .premium-btn:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.15);
+        transform: translateY(-1px);
+      }
+
+      .premium-btn-primary {
+        background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+        border: none;
+        color: #fff;
+        box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
+      }
+
+      .premium-btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 30px rgba(139, 92, 246, 0.3), 
+                    0 0 20px rgba(59, 130, 246, 0.2);
+        filter: brightness(1.1);
+      }
+
+      .premium-btn-primary:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+
+      /* Badges */
+      .glass-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 6px 12px;
+        border-radius: var(--border-radius-sm);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .glass-badge-conviction {
+        background: rgba(239, 68, 68, 0.06);
+        border-color: rgba(239, 68, 68, 0.15);
+        color: #f87171;
+      }
+
+      .glass-badge-acquittal {
+        background: rgba(16, 185, 129, 0.06);
+        border-color: rgba(16, 185, 129, 0.15);
+        color: #34d399;
+      }
+
+      /* Progress bar confidence indicator */
+      .premium-progress-bg {
+        width: 100%;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 99px;
+        overflow: hidden;
+      }
+
+      .premium-progress-bar {
+        height: 100%;
+        border-radius: 99px;
+        transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
+      }
+
+      .premium-progress-bar::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0) 100%);
+        animation: shine-progress 2s infinite linear;
+      }
+
+      @keyframes shine-progress {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+      }
+
+      /* Precedent Cards */
+      .precedent-btn {
+        width: 100%;
+        text-align: left;
+        border: 1px solid var(--card-border);
+        background: rgba(255, 255, 255, 0.01);
+        border-radius: var(--border-radius-md);
+        padding: 18px;
+        color: var(--text-primary);
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        box-sizing: border-box;
+      }
+
+      .precedent-btn:hover {
+        background: rgba(255, 255, 255, 0.03);
+        border-color: rgba(59, 130, 246, 0.2);
+        transform: translateX(4px);
+      }
+
+      /* Spinner Animation */
+      .premium-spinner {
+        width: 18px;
+        height: 18px;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-top-color: #fff;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+
+      /* Layout Utilities */
+      .layout-container {
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 24px;
+        position: relative;
+        z-index: 10;
+        box-sizing: border-box;
+      }
+
+      .layout-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        align-items: start;
+      }
+
+      @media (max-width: 900px) {
+        .layout-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      #root {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        z-index: 1;
+      }
+
+      .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav-btn {
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: var(--border-radius-sm);
+        color: var(--text-secondary);
+        padding: 8px 16px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .nav-btn:hover {
+        color: #fff;
+      }
+      .nav-btn.active {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        color: #fff;
+      }
+
+      /* Page content transitions */
+      .page-content {
+        display: none;
+      }
+      .page-content.active {
+        display: block;
+      }
+
+      .fade-in {
+        animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Modal styling */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(8px);
+        z-index: 1000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+      .modal-backdrop.active {
+        display: flex;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: .4; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Ambient mesh glow background -->
+    <div class="ambient-bg">
+      <div class="glow-blob glow-blue"></div>
+      <div class="glow-blob glow-purple"></div>
+      <div class="glow-blob glow-center"></div>
+    </div>
+
+    <div id="root">
+      <div class="main-content">
+        <!-- 1. TOP RESEARCH BANNER -->
+        <div style="background: rgba(10, 10, 12, 0.8); color: var(--text-secondary); font-size: 11px; font-weight: 500; padding: 10px 24px; text-align: center; text-transform: uppercase; letter-spacing: 0.12em; border-bottom: 1px solid rgba(255, 255, 255, 0.05); position: relative; z-index: 50;">
+          <span style="color: var(--accent-blue); margin-right: 6px;">✦</span>
+          Academic Research Prototype — Natural Language Processing & Juridical Prediction Models
+        </div>
+
+        <!-- 2. STICKY GLASS NAVBAR -->
+        <nav class="glass-nav">
+          <div class="layout-container" style="display: flex; align-items: center; height: 72px; justify-content: space-between;">
+            <!-- Brand Logo -->
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25); color: #fff;">
+                <i data-lucide="scale" style="width: 18px; height: 18px;"></i>
+              </div>
+              <div>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <span style="font-family: var(--font-heading); font-size: 18px; font-weight: 700; letter-spacing: -0.02em; color: #fff;">
+                    LegalAI
+                  </span>
+                  <span class="glass-badge" style="font-size: 9px; padding: 3px 8px; border-color: rgba(59, 130, 246, 0.15); color: var(--accent-blue);">
+                    Beta
+                  </span>
+                </div>
+                <div style="font-size: 10px; color: var(--text-muted); font-weight: 500;">
+                  Court Decision Framework
+                </div>
+              </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <div style="display: flex; gap: 4px;">
+              <button class="nav-btn active" onclick="switchPage('analyze')">
+                <i data-lucide="scale" style="width: 14px; height: 14px;"></i>
+                Analyze
+              </button>
+              <button class="nav-btn" onclick="switchPage('history')">
+                <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
+                History
+              </button>
+              <button class="nav-btn" onclick="switchPage('stats')">
+                <i data-lucide="bar-chart-2" style="width: 14px; height: 14px;"></i>
+                Statistics
+              </button>
+              <button class="nav-btn" onclick="switchPage('about')">
+                <i data-lucide="info" style="width: 14px; height: 14px;"></i>
+                About
+              </button>
+            </div>
+          </div>
+        </nav>
+
+        <!-- 3. PAGE MAIN CONTENTS -->
+        <div class="layout-container" style="flex: 1; display: flex; flex-direction: column;">
+          
+          <!-- HERO HEADER AREA (Only on Analyze tab) -->
+          <div id="hero-area" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center; padding: 60px 0 20px;">
+            <!-- Left Hero Description -->
+            <div style="flex: 1 1 450px; display: flex; flex-direction: column; gap: 20px;">
+              <span class="glass-badge" style="align-self: flex-start; background: rgba(255,255,255,0.02); color: var(--text-secondary);">
+                <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-blue); display: inline-block; margin-right: 6px; animation: pulse 2s infinite;"></span>
+                Natural Language NLP & Classifier Evaluation
+              </span>
+              <h1 class="gradient-text" style="font-size: 48px; font-weight: 700; line-height: 1.1; margin: 0; font-family: var(--font-heading);">
+                Predict Trial Outcomes <br />
+                <span class="glow-gradient-text" style="font-weight: 700;">Powered by Legal AI</span>
+              </h1>
+              <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6; margin: 0; max-width: 480px; font-weight: 300;">
+                Analyze complex case narratives, trace statutory precedents, and gauge court probability outcomes through TF-IDF similarities and SVM model forecasts.
+              </p>
+              
+              <!-- Mini metrics counts dashboard -->
+              <div style="display: inline-flex; gap: 24px; background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.03); padding: 14px 28px; border-radius: var(--border-radius-md); width: fit-content; margin-top: 10px;">
+                <div>
+                  <div id="hero-f1" style="font-size: 18px; font-weight: 700; color: #fff; font-family: var(--font-heading);">94.0%</div>
+                  <div style="font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;">F1 Accuracy</div>
+                </div>
+                <div style="width: 1px; background: rgba(255,255,255,0.08);"></div>
+                <div>
+                  <div id="hero-db-cases" style="font-size: 18px; font-weight: 700; color: #fff; font-family: var(--font-heading);">4.5k+</div>
+                  <div style="font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;">DB Cases</div>
+                </div>
+                <div style="width: 1px; background: rgba(255,255,255,0.08);"></div>
+                <div>
+                  <div id="hero-ipc-sections" style="font-size: 18px; font-weight: 700; color: #fff; font-family: var(--font-heading);">29</div>
+                  <div style="font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;">IPC Sections</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Hero: ThreeJS 3D Canvas container -->
+            <div style="flex: 1 1 350px; height: 380px; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative;">
+              <div id="canvas-container" style="width: 100%; height: 100%; min-height: 350px; position: relative;"></div>
+              
+              <!-- 3D Toggle Controller -->
+              <div style="position: absolute; bottom: 10px; display: flex; gap: 8px; background: rgba(10, 10, 12, 0.6); backdrop-filter: blur(10px); padding: 6px; border-radius: 99px; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 4px 20px rgba(0,0,0,0.3); z-index: 20;">
+                <button id="toggle-scale" class="premium-btn" onclick="setActiveObject('scale')" style="background: transparent; border: none; border-radius: 99px; font-size: 11px; padding: 6px 14px; font-weight: 500; height: auto;">
+                  Scale ⚖️
+                </button>
+                <button id="toggle-gavel" class="premium-btn" onclick="setActiveObject('gavel')" style="background: rgba(255, 255, 255, 0.08); border: none; border-radius: 99px; font-size: 11px; padding: 6px 14px; font-weight: 500; height: auto; color: #fff;">
+                  Gavel 🔨
+                </button>
+                <button id="toggle-books" class="premium-btn" onclick="setActiveObject('books')" style="background: transparent; border: none; border-radius: 99px; font-size: 11px; padding: 6px 14px; font-weight: 500; height: auto;">
+                  Books 📚
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB RENDERING SECTIONS -->
+          <div style="position: relative; z-index: 10; flex: 1;">
+            
+            <!-- A. ANALYZE PAGE -->
+            <div id="page-analyze" class="page-content active fade-in">
+              <div class="layout-grid" style="padding: 40px 0;">
+                <!-- Left Input Form -->
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                  <div class="glass-panel" style="padding: 32px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 28px;">
+                      <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.12); display: flex; align-items: center; justify-content: center; color: var(--accent-blue);">
+                        <i data-lucide="file-text" style="width: 20px; height: 20px;"></i>
+                      </div>
+                      <div>
+                        <h2 style="font-size: 18px; font-weight: 600; color: #fff; margin: 0;">Case Details</h2>
+                        <p style="font-size: 12px; color: var(--text-secondary); margin: 4px 0 0;">
+                          Provide legal facts to evaluate court outcome probabilities.
+                        </p>
+                      </div>
+                    </div>
+
+                    <!-- Input Facts -->
+                    <div style="margin-bottom: 24px;">
+                      <label style="display: block; font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px;">
+                        Case Facts
+                      </label>
+                      <textarea id="input-facts" rows="5" class="glass-input" placeholder="Describe the incident, involved actions, and timeline details..." style="resize: none; line-height: 1.6;" onfocus="setActiveObject('books')"></textarea>
+                    </div>
+
+                    <!-- Input Section/Court -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px;">
+                      <div>
+                        <label style="display: block; font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px;">
+                          Legal Section
+                        </label>
+                        <input id="input-section" type="text" class="glass-input" placeholder="e.g. IPC 379" onfocus="setActiveObject('gavel')" />
+                      </div>
+                      <div>
+                        <label style="display: block; font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px;">
+                          Court Type
+                        </label>
+                        <select id="input-court" class="glass-input" style="appearance: none; cursor: pointer; background: rgba(255, 255, 255, 0.02) url('data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 20 20\'%3e%3cpath stroke=\'%23a1a1aa\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'1.5\' d=\'M6 8l4 4 4-4\'/%3e%3c/svg%3e') no-repeat right 12px center; background-size: 18px; padding-right: 36px;">
+                          <option value="District Court" style="background: #0e0e11;">District Court</option>
+                          <option value="Sessions Court" style="background: #0e0e11;">Sessions Court</option>
+                          <option value="High Court" style="background: #0e0e11;">High Court</option>
+                          <option value="Supreme Court" style="background: #0e0e11;">Supreme Court</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Quick Fills -->
+                    <div style="border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 20px; margin-bottom: 28px;">
+                      <div style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;">
+                        Quick Fill Templates
+                      </div>
+                      <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <button type="button" class="premium-btn" onclick="quickFill('Theft (379)', 'accused stole gold chain from victim on road', 'IPC 379', 'District Court')" style="font-size: 11px; padding: 8px 14px; height: auto;">Theft (379)</button>
+                        <button type="button" class="premium-btn" onclick="quickFill('Cheating (420)', 'accused cheated investors in fake scheme promising returns', 'IPC 420', 'High Court')" style="font-size: 11px; padding: 8px 14px; height: auto;">Cheating (420)</button>
+                        <button type="button" class="premium-btn" onclick="quickFill('Assault (323)', 'accused assaulted complainant during property dispute', 'IPC 323', 'District Court')" style="font-size: 11px; padding: 8px 14px; height: auto;">Assault (323)</button>
+                        <button type="button" class="premium-btn" onclick="quickFill('Forgery (468)', 'accused forged land documents to transfer property illegally', 'IPC 468', 'High Court')" style="font-size: 11px; padding: 8px 14px; height: auto;">Forgery (468)</button>
+                      </div>
+                    </div>
+
+                    <!-- Run button -->
+                    <button id="run-btn" onclick="runPrediction()" class="premium-btn premium-btn-primary" style="width: 100%; padding: 16px;">
+                      <i data-lucide="play" style="width: 15px; height: 15px; fill: currentColor;"></i>
+                      Analyze Case Material
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Right Output Panel -->
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                  
+                  <!-- 1. Placeholder Waiting View -->
+                  <div id="output-placeholder" class="glass-panel" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 350px; padding: 40px; border-style: dashed; background: transparent;">
+                    <div style="width: 56px; height: 56px; border-radius: 16px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); display: flex; align-items: center; justify-content: center; color: var(--text-muted); margin-bottom: 20px;">
+                      <i data-lucide="help-circle" style="width: 24px; height: 24px;"></i>
+                    </div>
+                    <h3 style="font-size: 16px; font-weight: 500; color: var(--text-secondary); margin: 0 0 8px;">
+                      Awaiting Input Facts
+                    </h3>
+                    <p style="font-size: 13px; color: var(--text-muted); text-align: center; margin: 0; max-width: 280px; line-height: 1.5;">
+                      Submit case specifics on the left to activate deep predictive inference metrics.
+                    </p>
+                  </div>
+
+                  <!-- 2. Loading Skeleton View -->
+                  <div id="output-loading" style="display: none; flex-direction: column; gap: 20px;">
+                    <div class="glass-panel" style="padding: 32px;">
+                      <div style="height: 24px; width: 40%; background: rgba(255, 255, 255, 0.03); border-radius: 4px; margin-bottom: 32px; animation: pulse 1.5s infinite;"></div>
+                      <div style="height: 48px; width: 80%; background: rgba(255, 255, 255, 0.03); border-radius: 8px; margin-bottom: 24px; animation: pulse 1.5s infinite;"></div>
+                      <div style="height: 10px; width: 100%; background: rgba(255, 255, 255, 0.02); border-radius: 4px; margin-bottom: 12px;"></div>
+                      <div style="height: 10px; width: 90%; background: rgba(255, 255, 255, 0.02); border-radius: 4px;"></div>
+                    </div>
+                    <div class="glass-panel" style="padding: 32px;">
+                      <div style="height: 20px; width: 30%; background: rgba(255, 255, 255, 0.03); border-radius: 4px; margin-bottom: 20px; animation: pulse 1.5s infinite;"></div>
+                      <div style="height: 36px; width: 100%; background: rgba(255, 255, 255, 0.02); border-radius: 6px;"></div>
+                    </div>
+                  </div>
+
+                  <!-- 3. Results Panel -->
+                  <div id="output-results" style="display: none; flex-direction: column; gap: 24px;" class="fade-in">
+                    <!-- Outcome Card -->
+                    <div class="glass-panel" style="padding: 32px; position: relative; overflow: hidden;">
+                      <!-- Glow border line -->
+                      <div id="outcome-glow-line" style="position: absolute; top: 0; left: 0; right: 0; height: 3px;"></div>
+                      
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px;">
+                        <h3 style="font-size: 15px; font-weight: 600; color: #fff; margin: 0; display: flex; align-items: center; gap: 8px;">
+                          <i data-lucide="sparkles" style="width: 16px; height: 16px; color: var(--accent-blue);"></i>
+                          Prediction Outcome
+                        </h3>
+                        <span id="outcome-badge" class="glass-badge"></span>
+                      </div>
+
+                      <div style="margin-bottom: 24px;">
+                        <div style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">
+                          Identified Outcome
+                        </div>
+                        <div id="outcome-val" style="font-size: 32px; font-weight: 700; font-family: var(--font-heading); letter-spacing: -0.02em;"></div>
+                      </div>
+
+                      <!-- Progress bar confidence -->
+                      <div style="background: rgba(255, 255, 255, 0.015); padding: 20px; border-radius: var(--border-radius-md); border: 1px solid rgba(255, 255, 255, 0.03);">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px;">
+                          <span style="font-size: 12px; color: var(--text-secondary);">Confidence Score</span>
+                          <span id="confidence-val" style="font-size: 20px; font-weight: 700; color: #fff; font-family: var(--font-heading);"></span>
+                        </div>
+                        <div class="premium-progress-bg">
+                          <div id="confidence-progress-bar" class="premium-progress-bar"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Model Reasoning Card -->
+                    <div class="glass-panel" style="padding: 32px;">
+                      <h3 style="font-size: 15px; font-weight: 600; color: #fff; margin: 0 0 20px; display: flex; align-items: center; gap: 8px;">
+                        <i id="reasoning-icon" data-lucide="shield-alert" style="width: 16px; height: 16px;"></i>
+                        Model Reasoning
+                      </h3>
+                      <div id="reasoning-list" style="display: flex; flex-direction: column; gap: 10px;"></div>
+                    </div>
+
+                    <!-- Precedents Card -->
+                    <div class="glass-panel" style="padding: 32px;">
+                      <h3 style="font-size: 15px; font-weight: 600; color: #fff; margin: 0 0 20px;">
+                        Relevant Precedents
+                      </h3>
+                      <div id="precedents-list" style="display: flex; flex-direction: column; gap: 12px;"></div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- B. HISTORY PAGE -->
+            <div id="page-history" class="page-content fade-in" style="padding: 40px 0; max-width: 800px; margin: 0 auto;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+                <div>
+                  <h2 style="font-size: 24px; font-weight: 600; color: #fff; margin: 0; display: flex; align-items: center; gap: 10px;">
+                    <i data-lucide="history" style="width: 22px; height: 22px; color: var(--accent-blue);"></i>
+                    Case Log History
+                  </h2>
+                  <p style="font-size: 13px; color: var(--text-secondary); margin: 6px 0 0;">
+                    Review past outcomes and model confidence records from local storage.
+                  </p>
+                </div>
+                <button id="clear-history-btn" class="premium-btn" onclick="clearHistory()" style="background: transparent; border: 1px solid rgba(255, 68, 68, 0.2); color: #f87171; font-size: 12px; padding: 8px 14px; border-radius: var(--border-radius-sm); display: none; height: auto;">
+                  Clear Log
+                </button>
+              </div>
+
+              <!-- History Entries list -->
+              <div id="history-container"></div>
+            </div>
+
+            <!-- C. STATISTICS PAGE -->
+            <div id="page-stats" class="page-content fade-in" style="padding: 40px 0;">
+              <div style="margin-bottom: 36px; text-align: center;">
+                <h2 class="glow-gradient-text" style="font-size: 28px; font-weight: 700; margin: 0;">
+                  Model Statistics
+                </h2>
+                <p style="font-size: 13px; color: var(--text-secondary); margin: 8px 0 0;">
+                  Real-time metrics, classifier evaluations, and structural data allocations.
+                </p>
+              </div>
+
+              <!-- Stat Cards Grid -->
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 36px;">
+                <!-- Card 1 -->
+                <div class="glass-panel glass-panel-hover" style="padding: 24px; text-align: center; position: relative; overflow: hidden;">
+                  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent-blue), transparent);"></div>
+                  <div style="display: flex; justify-content: center; margin-bottom: 14px; color: var(--accent-blue);">
+                    <i data-lucide="percent" style="width: 18px; height: 18px;"></i>
+                  </div>
+                  <div id="stat-accuracy" style="font-size: 28px; font-weight: 700; color: #fff; font-family: var(--font-heading); margin: 0 0 4px;">94.0%</div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Model Accuracy</div>
+                  <div style="font-size: 10px; color: var(--text-muted);">Cross Validated</div>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass-panel glass-panel-hover" style="padding: 24px; text-align: center; position: relative; overflow: hidden;">
+                  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent-purple), transparent);"></div>
+                  <div style="display: flex; justify-content: center; margin-bottom: 14px; color: var(--accent-purple);">
+                    <i data-lucide="trending-up" style="width: 18px; height: 18px;"></i>
+                  </div>
+                  <div id="stat-precision" style="font-size: 28px; font-weight: 700; color: #fff; font-family: var(--font-heading); margin: 0 0 4px;">94.6%</div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Model Precision</div>
+                  <div style="font-size: 10px; color: var(--text-muted);">IPC Evaluation</div>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass-panel glass-panel-hover" style="padding: 24px; text-align: center; position: relative; overflow: hidden;">
+                  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent-blue), transparent);"></div>
+                  <div style="display: flex; justify-content: center; margin-bottom: 14px; color: var(--accent-blue);">
+                    <i data-lucide="bar-chart-2" style="width: 18px; height: 18px;"></i>
+                  </div>
+                  <div id="stat-recall" style="font-size: 28px; font-weight: 700; color: #fff; font-family: var(--font-heading); margin: 0 0 4px;">94.0%</div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Model Recall</div>
+                  <div style="font-size: 10px; color: var(--text-muted);">True Positive</div>
+                </div>
+                <!-- Card 4 -->
+                <div class="glass-panel glass-panel-hover" style="padding: 24px; text-align: center; position: relative; overflow: hidden;">
+                  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent-purple), transparent);"></div>
+                  <div style="display: flex; justify-content: center; margin-bottom: 14px; color: var(--accent-purple);">
+                    <i data-lucide="users" style="width: 18px; height: 18px;"></i>
+                  </div>
+                  <div id="stat-trained-cases" style="font-size: 28px; font-weight: 700; color: #fff; font-family: var(--font-heading); margin: 0 0 4px;">4.5k+</div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Trained Cases</div>
+                  <div style="font-size: 10px; color: var(--text-muted);">Curated Database</div>
+                </div>
+              </div>
+
+              <!-- Charts Grid -->
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px;">
+                <!-- Outcome Doughnut -->
+                <div class="glass-panel" style="padding: 28px;">
+                  <h3 style="font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 20px;">Outcome Distribution</h3>
+                  <div style="height: 240px; position: relative;">
+                    <canvas id="outcome-chart"></canvas>
+                  </div>
+                </div>
+                <!-- Cases Bar Chart -->
+                <div class="glass-panel" style="padding: 28px;">
+                  <h3 style="font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 20px;">Cases by IPC Section</h3>
+                  <div style="height: 240px; position: relative;">
+                    <canvas id="section-chart"></canvas>
+                  </div>
+                </div>
+                <!-- Line Chart spanning full width -->
+                <div class="glass-panel" style="padding: 28px; grid-column: 1 / -1;">
+                  <h3 style="font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 20px;">Cross-Validation Accuracy (5-Fold)</h3>
+                  <div style="height: 220px; position: relative;">
+                    <canvas id="accuracy-chart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- D. ABOUT PAGE -->
+            <div id="page-about" class="page-content fade-in" style="padding: 40px 0; max-width: 800px; margin: 0 auto;">
+              <div class="glass-panel" style="position: relative; overflow: hidden;">
+                <!-- Header glow bar -->
+                <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));"></div>
+                
+                <div style="padding: 40px;">
+                  <h2 style="font-size: 26px; font-weight: 700; color: #fff; margin: 0 0 6px;">About LegalAI</h2>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 28px;">
+                    Academic Research Project — 2026/2027
+                  </div>
+
+                  <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin: 0 0 32px;">
+                    LegalAI functions as a decision-support laboratory prototype for legal researchers and scholars. 
+                    By processing court records, case facts, and historical outcomes, it provides rapid classification predictions 
+                    and vectors similar precedents to automate qualitative document parsing.
+                  </p>
+
+                  <h3 style="font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                    <i data-lucide="cpu" style="width: 16px; height: 16px; color: var(--accent-purple);"></i>
+                    Core Architecture
+                  </h3>
+
+                  <!-- Tech cards -->
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px;">
+                    <div style="padding: 16px; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); border-radius: var(--border-radius-md);">
+                      <div style="font-weight: 600; font-size: 13px; color: #fff; margin-bottom: 4px;">Backend API</div>
+                      <div style="font-size: 11px; color: var(--text-secondary);">Python-based FastAPI microservice</div>
+                    </div>
+                    <div style="padding: 16px; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); border-radius: var(--border-radius-md);">
+                      <div style="font-weight: 600; font-size: 13px; color: #fff; margin-bottom: 4px;">Machine Learning</div>
+                      <div style="font-size: 11px; color: var(--text-secondary);">Scikit-learn (SVM / Random Forest Classifiers)</div>
+                    </div>
+                    <div style="padding: 16px; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); border-radius: var(--border-radius-md);">
+                      <div style="font-weight: 600; font-size: 13px; color: #fff; margin-bottom: 4px;">NLP Extraction</div>
+                      <div style="font-size: 11px; color: var(--text-secondary);">TF-IDF & Cosine Similarity for search retrieval</div>
+                    </div>
+                    <div style="padding: 16px; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); border-radius: var(--border-radius-md);">
+                      <div style="font-weight: 600; font-size: 13px; color: #fff; margin-bottom: 4px;">Interactive Web</div>
+                      <div style="font-size: 11px; color: var(--text-secondary);">Vanilla JS, Three.js, and Chart.js</div>
+                    </div>
+                  </div>
+
+                  <!-- Performance -->
+                  <div style="display: flex; align-items: flex-start; gap: 16px; padding: 20px; background: rgba(59, 130, 246, 0.03); border: 1px solid rgba(59, 130, 246, 0.12); border-radius: var(--border-radius-md); margin-bottom: 32px;">
+                    <i data-lucide="award" style="width: 20px; height: 20px; color: var(--accent-blue); flex-shrink: 0; margin-top: 2px;"></i>
+                    <div>
+                      <h4 style="font-size: 13px; font-weight: 600; color: #fff; margin: 0 0 4px;">Model Performance</h4>
+                      <p style="font-size: 12px; color: var(--text-secondary); margin: 0; line-height: 1.6;">
+                        Achieves a <strong>~<span id="about-accuracy">94.0</span>% average cross-validation accuracy</strong> on testing folds containing <span id="about-case-count">100</span> 
+                        curated Indian trial summaries across <span id="about-ipc-count">29</span> Indian Penal Code sections.
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Warning disclaimer -->
+                  <div style="display: flex; align-items: flex-start; gap: 16px; padding: 20px; background: rgba(239, 68, 68, 0.03); border: 1px solid rgba(239, 68, 68, 0.12); border-radius: var(--border-radius-md); color: #fca5a5; font-size: 12px; line-height: 1.6; margin-bottom: 40px;">
+                    <i data-lucide="shield-alert" style="width: 20px; height: 20px; color: var(--accent-red); flex-shrink: 0; margin-top: 2px;"></i>
+                    <div>
+                      <strong>Academic Disclaimer:</strong> This application serves exploratory and scientific research functions 
+                      only. The model predictions represent statistical heuristics and must not be used as professional legal 
+                      advice or judicial decision-making recommendations.
+                    </div>
+                  </div>
+
+                  <!-- Action buttons -->
+                  <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+                    <a href="https://legal-case-ai.onrender.com/docs" target="_blank" rel="noopener noreferrer" class="premium-btn premium-btn-primary" style="padding: 12px 24px; font-size: 12px;">
+                      <i data-lucide="link-2" style="width: 13px; height: 13px;"></i>
+                      API Documentation
+                    </a>
+                    <a href="https://github.com/hello-abhiii/legal-case-ai" target="_blank" rel="noopener noreferrer" class="premium-btn" style="padding: 12px 24px; font-size: 12px;">
+                      <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 4px;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                      View Source Repository
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- 4. FOOTER -->
+        <footer style="border-top: 1px solid rgba(255, 255, 255, 0.05); background: rgba(3, 3, 3, 0.8); backdrop-filter: blur(16px); position: relative; z-index: 10; margin-top: 60px; padding: 32px 0;">
+          <div class="layout-container" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; font-size: 12px; color: var(--text-muted);">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></div>
+              <span>© 2026/2027 LegalAI Laboratory — IR & ML Department.</span>
+            </div>
+            <div style="display: flex; gap: 24px;">
+              <a href="https://legal-case-ai.onrender.com" target="_blank" rel="noopener noreferrer" style="color: var(--text-muted); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--text-secondary)'" onmouseout="this.style.color='var(--text-muted)'">
+                Backend API
+              </a>
+              <a href="https://github.com/hello-abhiii/legal-case-ai" target="_blank" rel="noopener noreferrer" style="color: var(--text-muted); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--text-secondary)'" onmouseout="this.style.color='var(--text-muted)'">
+                GitHub Repository
+              </a>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+    </div>
+
+    <!-- 5. PRECEDENT DETAIL MODAL -->
+    <div id="precedent-modal" class="modal-backdrop" onclick="closePrecedentModal()">
+      <div class="glass-panel" onclick="event.stopPropagation()" style="position: relative; width: 100%; max-width: 650px; max-height: 85vh; overflow: hidden; display: flex; flex-direction: column; background: rgba(10, 10, 12, 0.9); border-color: rgba(255, 255, 255, 0.08); z-index: 1010; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(59, 130, 246, 0.05);">
+        <!-- Modal Header -->
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; padding: 24px 28px; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+          <div>
+            <span class="glass-badge" style="color: var(--accent-blue); border-color: rgba(59,130,246,0.15); background: rgba(59,130,246,0.02); margin-bottom: 8px;">
+              Relevant Precedent
+            </span>
+            <h3 id="modal-title" style="font-size: 20px; font-weight: 600; color: #fff; margin: 6px 0 0;"></h3>
+          </div>
+          <button onclick="closePrecedentModal()" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); color: var(--text-secondary); border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.color='#fff'; this.style.background='rgba(255, 255, 255, 0.06)'" onmouseout="this.style.color='var(--text-secondary)'; this.style.background='rgba(255, 255, 255, 0.03)'">
+            <i data-lucide="x" style="width: 16px; height: 16px;"></i>
+          </button>
+        </div>
+        <!-- Modal Content Body -->
+        <div style="padding: 28px; overflow-y: auto; flex: 1;">
+          <div style="display: flex; gap: 8px; margin-bottom: 24px;">
+            <span id="modal-section-badge" class="glass-badge"></span>
+            <span id="modal-outcome-badge" class="glass-badge"></span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-secondary); margin-bottom: 10px;">
+            <i data-lucide="scale" style="width: 13px; height: 13px; color: var(--accent-purple);"></i>
+            Case Facts
+          </div>
+
+          <p id="modal-facts" style="font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin: 0; white-space: pre-line; background: rgba(255, 255, 255, 0.01); padding: 18px; border-radius: var(--border-radius-md); border: 1px solid rgba(255, 255, 255, 0.03);"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- APP JAVASCRIPT LOGIC -->
+    <script>
+      const API_ENDPOINT = 'https://legal-case-ai.onrender.com';
+      let activeObjectState = 'gavel';
+      let outcomeState = null;
+      let selectedPrecedentState = null;
+
+      // Fallback numbers shown until /metrics loads (or if it fails, e.g. Render cold-starting).
+      let modelMetrics = {
+        accuracy: 94.0, precision: 94.6, recall: 94.0, f1_score: 94.0,
+        cv_fold_accuracies: [95, 100, 90, 100, 85],
+        total_cases: 4563, prediction_cases: 100, ipc_sections: 29,
+        outcome_distribution: { Conviction: 50, Acquittal: 16 },
+        section_distribution: { 'IPC 379': 10, 'IPC 420': 10, 'IPC 323': 8, 'IPC 380': 6, 'IPC 468': 6, 'IPC 392': 4, Other: 56 },
+      };
+
+      function formatCaseCount(n) {
+        return n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k+' : String(n);
+      }
+
+      // Pulls the latest evaluation numbers written by scripts/train.py (via
+      // backend's GET /metrics) so the site never shows stale hardcoded stats.
+      async function loadMetrics() {
+        try {
+          const res = await fetch(`${API_ENDPOINT}/metrics`);
+          if (!res.ok) throw new Error(`Metrics request failed: ${res.status}`);
+          modelMetrics = { ...modelMetrics, ...(await res.json()) };
+        } catch (err) {
+          console.warn('Could not load live metrics, using fallback values:', err);
+        }
+        renderMetrics();
+      }
+
+      function renderMetrics() {
+        const m = modelMetrics;
+        const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+
+        set('hero-f1', `${m.f1_score}%`);
+        set('hero-db-cases', formatCaseCount(m.total_cases));
+        set('hero-ipc-sections', m.ipc_sections);
+
+        set('stat-accuracy', `${m.accuracy}%`);
+        set('stat-precision', `${m.precision}%`);
+        set('stat-recall', `${m.recall}%`);
+        set('stat-trained-cases', formatCaseCount(m.total_cases));
+
+        set('about-accuracy', m.accuracy);
+        set('about-case-count', m.prediction_cases);
+        set('about-ipc-count', m.ipc_sections);
+
+        // Charts on the Stats page read from modelMetrics too - refresh them if built already.
+        if (outcomeChart || sectionChart || accuracyChart) initCharts();
+      }
+
+      // Initialize Lucide Icons
+      lucide.createIcons();
+
+      // Page switching
+      function switchPage(pageId) {
+        const pages = ['analyze', 'history', 'stats', 'about'];
+        pages.forEach(p => {
+          const el = document.getElementById('page-' + p);
+          if (el) el.classList.remove('active');
+        });
+        
+        // Remove active class from nav buttons and add to clicked one
+        const navButtons = document.querySelectorAll('.nav-btn');
+        navButtons.forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.getAttribute('onclick').includes(pageId)) {
+            btn.classList.add('active');
+          }
+        });
+
+        const activePageEl = document.getElementById('page-' + pageId);
+        if (activePageEl) activePageEl.classList.add('active');
+
+        // Hide/Show Hero & 3D Section
+        const heroArea = document.getElementById('hero-area');
+        if (pageId === 'analyze') {
+          heroArea.style.display = 'flex';
+          resetOutcome();
+        } else {
+          heroArea.style.display = 'none';
+        }
+
+        // Render Page-Specific Data
+        if (pageId === 'history') {
+          renderHistory();
+        } else if (pageId === 'stats') {
+          initCharts();
+        }
+      }
+
+      // Quick template fills
+      function quickFill(name, facts, section, court) {
+        document.getElementById('input-facts').value = facts;
+        document.getElementById('input-section').value = section;
+        document.getElementById('input-court').value = court;
+        setActiveObject('books');
+      }
+
+      // Reset outcome state helper
+      function resetOutcome() {
+        outcomeState = null;
+        targetTiltAngle = 0;
+        setActiveObject('gavel');
+      }
+
+      // API Outcome Prediction logic
+      async function runPrediction() {
+        const factsInput = document.getElementById('input-facts').value.trim();
+        const sectionInput = document.getElementById('input-section').value.trim();
+        const courtInput = document.getElementById('input-court').value;
+
+        if (!factsInput || !sectionInput) {
+          alert('Please provide both case facts and a legal section.');
+          return;
+        }
+        if (factsInput.length < 20) {
+          alert('Case facts description must be at least 20 characters long.');
+          return;
+        }
+
+        const runBtn = document.getElementById('run-btn');
+        const placeholder = document.getElementById('output-placeholder');
+        const loadingDiv = document.getElementById('output-loading');
+        const resultsDiv = document.getElementById('output-results');
+
+        // Set UI to loading state
+        runBtn.disabled = true;
+        runBtn.innerHTML = '<span class="premium-spinner"></span> Running Models...';
+        placeholder.style.display = 'none';
+        resultsDiv.style.display = 'none';
+        loadingDiv.style.display = 'flex';
+        
+        outcomeState = null;
+        targetTiltAngle = 0;
+        setActiveObject('scale'); // Switch 3D to scale
+
+        try {
+          const res = await fetch(`${API_ENDPOINT}/analyze`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ facts: factsInput, section: sectionInput, court: courtInput })
+          });
+
+          if (!res.ok) throw new Error('API Request Failed');
+
+          const data = await res.json();
+
+          // Render Prediction Results
+          const isConviction = data.predicted_outcome === 'Conviction';
+          outcomeState = data.predicted_outcome;
+          targetTiltAngle = isConviction ? -0.25 : 0.25;
+
+          // Set outcome glow border color
+          const glowLine = document.getElementById('outcome-glow-line');
+          glowLine.style.background = isConviction 
+            ? 'linear-gradient(90deg, var(--accent-red), transparent)'
+            : 'linear-gradient(90deg, var(--accent-green), transparent)';
+
+          // Badge Outcome
+          const outcomeBadge = document.getElementById('outcome-badge');
+          outcomeBadge.innerText = data.predicted_outcome;
+          outcomeBadge.className = 'glass-badge ' + (isConviction ? 'glass-badge-conviction' : 'glass-badge-acquittal');
+
+          // Val Outcome
+          const outcomeVal = document.getElementById('outcome-val');
+          outcomeVal.innerText = data.predicted_outcome;
+          outcomeVal.style.color = isConviction ? '#f87171' : '#34d399';
+
+          // Confidence & progress bar
+          document.getElementById('confidence-val').innerText = data.confidence;
+          const confidenceProgress = document.getElementById('confidence-progress-bar');
+          confidenceProgress.style.width = data.confidence;
+          confidenceProgress.style.background = isConviction
+            ? 'linear-gradient(90deg, #dc2626, #ef4444)'
+            : 'linear-gradient(90deg, #059669, #10b981)';
+
+          // Reasoning list
+          const reasoningList = document.getElementById('reasoning-list');
+          reasoningList.innerHTML = '';
+          const reasoningIcon = document.getElementById('reasoning-icon');
+          if (isConviction) {
+            reasoningIcon.setAttribute('data-lucide', 'shield-alert');
+            reasoningIcon.style.color = 'var(--accent-red)';
+          } else {
+            reasoningIcon.setAttribute('data-lucide', 'sparkles');
+            reasoningIcon.style.color = 'var(--accent-green)';
+          }
+          lucide.createIcons(); // refresh icons
+
+          if (data.explanation) {
+            data.explanation.forEach(exp => {
+              const div = document.createElement('div');
+              div.style.cssText = 'display: flex; align-items: flex-start; gap: 12px; font-size: 13px; color: var(--text-secondary); background: rgba(255,255,255,0.01); padding: 12px 16px; border-radius: var(--border-radius-sm); border: 1px solid rgba(255,255,255,0.03); line-height: 1.5;';
+              div.innerHTML = `<i data-lucide="chevron-right" style="width: 14px; height: 14px; color: var(--accent-purple); flex-shrink: 0; margin-top: 3px;"></i><span>${exp}</span>`;
+              reasoningList.appendChild(div);
+            });
+            lucide.createIcons();
+          }
+
+          // Precedents list
+          const precedentsList = document.getElementById('precedents-list');
+          precedentsList.innerHTML = '';
+          if (data.similar_cases) {
+            data.similar_cases.forEach(cs => {
+              const btn = document.createElement('button');
+              btn.className = 'precedent-btn';
+              btn.onclick = () => openPrecedentModal(cs);
+              btn.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <div style="font-weight: 600; font-size: 14px; color: #fff;">${cs.title}</div>
+                  <i data-lucide="chevron-right" style="width: 14px; height: 14px; color: var(--text-muted);"></i>
+                </div>
+                <p style="font-size: 12px; color: var(--text-secondary); margin: 0 0 12px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.5;">
+                  ${cs.facts}
+                </p>
+                <div style="display: flex; gap: 8px;">
+                  <span class="glass-badge" style="font-size: 9px; padding: 4px 8px;">${cs.section}</span>
+                  <span class="glass-badge ${cs.outcome === 'Conviction' ? 'glass-badge-conviction' : 'glass-badge-acquittal'}" style="font-size: 9px; padding: 4px 8px;">${cs.outcome}</span>
+                </div>
+              `;
+              precedentsList.appendChild(btn);
+            });
+            lucide.createIcons();
+          }
+
+          // Trigger Confetti Celebration for Acquittal
+          if (!isConviction) {
+            confetti({
+              particleCount: 80,
+              spread: 60,
+              origin: { y: 0.7 },
+              colors: ['#34d399', '#60a5fa', '#a78bfa']
+            });
+          }
+
+          // Save prediction to localStorage History
+          savePredictionToHistory({
+            facts: factsInput,
+            section: sectionInput,
+            court: courtInput,
+            outcome: data.predicted_outcome,
+            confidence: data.confidence,
+            time: new Date().toLocaleString()
+          });
+
+          // Show Results Panel
+          loadingDiv.style.display = 'none';
+          resultsDiv.style.display = 'flex';
+
+        } catch (e) {
+          alert('Connection Error: The backend server might be asleep or unavailable. Please retry in 30-50 seconds.');
+          setActiveObject('gavel');
+          loadingDiv.style.display = 'none';
+          placeholder.style.display = 'flex';
+        } finally {
+          runBtn.disabled = false;
+          runBtn.innerHTML = '<i data-lucide="play" style="width: 15px; height: 15px; fill: currentColor;"></i> Analyze Case Material';
+          lucide.createIcons();
+        }
+      }
+
+      // Precedent Detail Modal Logic
+      function openPrecedentModal(caseData) {
+        selectedPrecedentState = caseData;
+        document.getElementById('modal-title').innerText = caseData.title || 'Untitled Case';
+        
+        const sectBadge = document.getElementById('modal-section-badge');
+        sectBadge.innerText = caseData.section || 'Section unavailable';
+        
+        const outBadge = document.getElementById('modal-outcome-badge');
+        outBadge.innerText = caseData.outcome || 'Outcome unavailable';
+        outBadge.className = 'glass-badge ' + (caseData.outcome === 'Conviction' ? 'glass-badge-conviction' : 'glass-badge-acquittal');
+        
+        document.getElementById('modal-facts').innerText = caseData.facts || 'Facts unavailable.';
+
+        document.getElementById('precedent-modal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closePrecedentModal() {
+        selectedPrecedentState = null;
+        document.getElementById('precedent-modal').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      // Close modal on Escape key
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closePrecedentModal();
+        }
+      });
+
+      // History Storage Logic
+      function savePredictionToHistory(prediction) {
+        const history = JSON.parse(localStorage.getItem('legalai_predictions') || '[]');
+        history.unshift(prediction);
+        // Cap history at 20 entries
+        localStorage.setItem('legalai_predictions', JSON.stringify(history.slice(0, 20)));
+      }
+
+      // Render past histories
+      function renderHistory() {
+        const historyContainer = document.getElementById('history-container');
+        const clearBtn = document.getElementById('clear-history-btn');
+        historyContainer.innerHTML = '';
+
+        const predictions = JSON.parse(localStorage.getItem('legalai_predictions') || '[]');
+
+        if (predictions.length === 0) {
+          clearBtn.style.display = 'none';
+          historyContainer.innerHTML = `
+            <div class="glass-panel" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 40px; text-align: center;">
+              <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: center; color: var(--text-muted); margin-bottom: 20px;">
+                <i data-lucide="history" style="width: 20px; height: 20px;"></i>
+              </div>
+              <h3 style="font-size: 15px; font-weight: 500; color: var(--text-secondary); margin: 0 0 6px;">No History Found</h3>
+              <p style="font-size: 12px; color: var(--text-muted); margin: 0;">Run the model on some case facts to populate this list.</p>
+            </div>
+          `;
+          lucide.createIcons();
+          return;
+        }
+
+        clearBtn.style.display = 'block';
+        predictions.forEach(p => {
+          const isConviction = p.outcome === 'Conviction';
+          const card = document.createElement('div');
+          card.className = 'glass-panel glass-panel-hover';
+          card.style.cssText = 'display: flex; flex-direction: column; gap: 16px; padding: 24px 28px; margin-bottom: 16px;';
+          card.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;">
+              <div style="flex: 1; min-width: 0;">
+                <p style="font-size: 14px; font-weight: 500; color: #fff; margin: 0 0 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                  ${p.facts}
+                </p>
+                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 11px; color: var(--text-secondary);">
+                  <span style="font-weight: 600; color: var(--text-primary);">${p.section}</span>
+                  <span style="width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.2);"></span>
+                  <span>${p.court}</span>
+                  <span style="width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.2);"></span>
+                  <span style="display: flex; align-items: center; gap: 4px;">
+                    <i data-lucide="clock" style="width: 11px; height: 11px;"></i>
+                    ${p.time.split(',')[0]}
+                  </span>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 16px; flex-shrink: 0;">
+                <div style="text-align: right;">
+                  <div style="font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 3px;">Confidence</div>
+                  <div style="font-size: 15px; font-weight: 700; color: #fff; font-family: var(--font-heading);">${p.confidence}</div>
+                </div>
+                <span class="glass-badge ${isConviction ? 'glass-badge-conviction' : 'glass-badge-acquittal'}" style="min-width: 90px; justify-content: center;">
+                  ${p.outcome}
+                </span>
+              </div>
+            </div>
+          `;
+          historyContainer.appendChild(card);
+        });
+        lucide.createIcons();
+      }
+
+      function clearHistory() {
+        if (window.confirm('Are you sure you want to clear your prediction history?')) {
+          localStorage.removeItem('legalai_predictions');
+          renderHistory();
+        }
+      }
+
+      // ChartJS rendering logic
+      let outcomeChart = null;
+      let sectionChart = null;
+      let accuracyChart = null;
+
+      function initCharts() {
+        // Destroy existing instances if present
+        if (outcomeChart) outcomeChart.destroy();
+        if (sectionChart) sectionChart.destroy();
+        if (accuracyChart) accuracyChart.destroy();
+
+        // Chart defaults
+        Chart.defaults.color = '#a1a1aa';
+        Chart.defaults.font.family = 'Inter, sans-serif';
+
+        const commonOptions = {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: {
+                font: { family: 'Inter', size: 11 },
+                color: '#a1a1aa',
+                usePointStyle: true,
+                boxWidth: 6,
+              }
+            },
+            tooltip: {
+              backgroundColor: '#0a0a0c',
+              titleColor: '#fff',
+              bodyColor: '#e4e4e7',
+              borderColor: 'rgba(255,255,255,0.06)',
+              borderWidth: 1,
+              padding: 12,
+              boxPadding: 6,
+              usePointStyle: true,
+              cornerRadius: 8,
+            }
+          }
+        };
+
+        // 1. Outcome Doughnut Chart
+        const outcomeLabels = Object.keys(modelMetrics.outcome_distribution);
+        const outcomeValues = Object.values(modelMetrics.outcome_distribution);
+        const doughnutCtx = document.getElementById('outcome-chart').getContext('2d');
+        outcomeChart = new Chart(doughnutCtx, {
+          type: 'doughnut',
+          data: {
+            labels: outcomeLabels,
+            datasets: [{
+              data: outcomeValues,
+              backgroundColor: ['#ef4444', '#10b981'],
+              borderWidth: 2,
+              borderColor: '#030303',
+              hoverOffset: 8
+            }]
+          },
+          options: {
+            ...commonOptions,
+            cutout: '72%',
+            plugins: {
+              ...commonOptions.plugins,
+              legend: {
+                position: 'bottom',
+                labels: {
+                  ...commonOptions.plugins.legend.labels,
+                  padding: 20
+                }
+              }
+            }
+          }
+        });
+
+        // 2. Cases Bar Chart
+        const sectionLabels = Object.keys(modelMetrics.section_distribution);
+        const sectionValues = Object.values(modelMetrics.section_distribution);
+        const barCtx = document.getElementById('section-chart').getContext('2d');
+        sectionChart = new Chart(barCtx, {
+          type: 'bar',
+          data: {
+            labels: sectionLabels,
+            datasets: [{
+              label: 'Number of Cases',
+              data: sectionValues,
+              backgroundColor: '#3b82f6',
+              borderRadius: 8,
+              hoverBackgroundColor: '#60a5fa',
+              borderWidth: 0,
+              barPercentage: 0.55
+            }]
+          },
+          options: {
+            ...commonOptions,
+            plugins: {
+              ...commonOptions.plugins,
+              legend: { display: false }
+            },
+            scales: {
+              x: { grid: { display: false }, ticks: { color: '#a1a1aa' } },
+              y: { grid: { color: 'rgba(255, 255, 255, 0.02)' }, beginAtZero: true, ticks: { color: '#a1a1aa' } }
+            }
+          }
+        });
+
+        // 3. Line Chart (Cross-Validation)
+        const lineCtx = document.getElementById('accuracy-chart').getContext('2d');
+        const purpleGradient = lineCtx.createLinearGradient(0, 0, 0, 200);
+        purpleGradient.addColorStop(0, 'rgba(139, 92, 246, 0.25)');
+        purpleGradient.addColorStop(1, 'rgba(139, 92, 246, 0.0)');
+
+        const foldLabels = modelMetrics.cv_fold_accuracies.map((_, i) => `Fold ${i + 1}`);
+        accuracyChart = new Chart(lineCtx, {
+          type: 'line',
+          data: {
+            labels: foldLabels,
+            datasets: [{
+              label: 'Accuracy %',
+              data: modelMetrics.cv_fold_accuracies,
+              borderColor: '#8b5cf6',
+              backgroundColor: purpleGradient,
+              pointBackgroundColor: '#030303',
+              pointBorderColor: '#8b5cf6',
+              pointBorderWidth: 2,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              fill: true,
+              tension: 0.38
+            }]
+          },
+          options: {
+            ...commonOptions,
+            scales: {
+              y: { min: Math.max(0, Math.min(...modelMetrics.cv_fold_accuracies) - 15), max: 100, grid: { color: 'rgba(255, 255, 255, 0.02)' }, ticks: { color: '#a1a1aa' } },
+              x: { grid: { display: false }, ticks: { color: '#a1a1aa' } }
+            }
+          }
+        });
+      }
+
+      // ThreeJS 3D Model initialization
+      let scene, camera, renderer, controls;
+      let interactiveGroup;
+      
+      // Sub-groups for models
+      let scaleGroup, gavelGroup, booksGroup;
+      
+      // Moving parts references for animation
+      let beamGroup, leftPanGroup, rightPanGroup;
+      let gavelMovingGroup;
+      let topBookGroup;
+
+      let targetTiltAngle = 0;
+      let isStriking = false;
+      let strikeStartTime = 0;
+      let booksHovered = false;
+
+      // Mouse tracking for raycasting & parallax
+      const mouse = new THREE.Vector2();
+      const raycaster = new THREE.Raycaster();
+
+      function initThree() {
+        const container = document.getElementById('canvas-container');
+        if (!container) return;
+
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+
+        // 1. Scene, Camera & Renderer
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+        camera.position.set(0, 0.2, 3.5);
+
+        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(width, height);
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        container.appendChild(renderer.domElement);
+
+        // 2. Controls
+        controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableZoom = false;
+        controls.enablePan = false;
+        controls.minPolarAngle = Math.PI / 2.5;
+        controls.maxPolarAngle = Math.PI / 1.8;
+
+        // 3. Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+
+        const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+        dirLight.position.set(5, 8, 5);
+        dirLight.castShadow = true;
+        dirLight.shadow.mapSize.width = 1024;
+        dirLight.shadow.mapSize.height = 1024;
+        dirLight.shadow.camera.near = 0.5;
+        dirLight.shadow.camera.far = 20;
+        scene.add(dirLight);
+
+        const spotLight = new THREE.SpotLight(0xffffff, 0.8);
+        spotLight.position.set(0, 5, 2);
+        spotLight.angle = Math.PI / 4;
+        spotLight.penumbra = 1;
+        spotLight.castShadow = true;
+        scene.add(spotLight);
+
+        // Ambient colored lights (matching glow)
+        const bluePoint = new THREE.PointLight(0x3b82f6, 0.6);
+        bluePoint.position.set(-4, 0, 1);
+        scene.add(bluePoint);
+
+        const purplePoint = new THREE.PointLight(0x8b5cf6, 0.6);
+        purplePoint.position.set(4, 0, 1);
+        scene.add(purplePoint);
+
+        // 4. Interactive Group Wrapper (for Parallax)
+        interactiveGroup = new THREE.Group();
+        scene.add(interactiveGroup);
+
+        // 5. Materials
+        const goldMaterial = new THREE.MeshStandardMaterial({
+          color: 0xfbbf24,
+          roughness: 0.2,
+          metalness: 0.9
+        });
+        const darkMetalMaterial = new THREE.MeshPhysicalMaterial({
+          color: 0x121214,
+          roughness: 0.4,
+          metalness: 0.9,
+          clearcoat: 1.0,
+          clearcoatRoughness: 0.1
+        });
+        const goldAccentMaterial = new THREE.MeshStandardMaterial({
+          color: 0xd97706,
+          roughness: 0.25,
+          metalness: 0.9
+        });
+        const centerJointMaterial = new THREE.MeshStandardMaterial({
+          color: 0xf59e0b,
+          roughness: 0.1,
+          metalness: 0.95
+        });
+        const chainMaterial = new THREE.MeshStandardMaterial({
+          color: 0xfbbf24,
+          roughness: 0.5
+        });
+        const panMaterial = new THREE.MeshPhysicalMaterial({
+          color: 0xfbbf24,
+          roughness: 0.1,
+          metalness: 0.8,
+          transmission: 0.4,
+          thickness: 0.2
+        });
+
+        // 6. BUILD SCALE MODEL
+        scaleGroup = new THREE.Group();
+        scaleGroup.position.set(0, -0.5, 0);
+        
+        // Base
+        const baseGeo = new THREE.CylinderGeometry(1, 1.1, 0.2, 32);
+        const baseMesh = new THREE.Mesh(baseGeo, darkMetalMaterial);
+        baseMesh.position.set(0, -1.1, 0);
+        baseMesh.castShadow = true;
+        baseMesh.receiveShadow = true;
+        scaleGroup.add(baseMesh);
+
+        // Stand Vertical Pole
+        const poleGeo = new THREE.CylinderGeometry(0.08, 0.1, 2.0, 16);
+        const poleMesh = new THREE.Mesh(poleGeo, goldMaterial);
+        poleMesh.position.set(0, 0, 0);
+        poleMesh.castShadow = true;
+        poleMesh.receiveShadow = true;
+        scaleGroup.add(poleMesh);
+
+        // Center Cap on top of pole
+        const capGeo = new THREE.SphereGeometry(0.18, 16, 16);
+        const capMesh = new THREE.Mesh(capGeo, goldAccentMaterial);
+        capMesh.position.set(0, 0.9, 0);
+        capMesh.castShadow = true;
+        scaleGroup.add(capMesh);
+
+        // Beam Group (Z tilting)
+        beamGroup = new THREE.Group();
+        beamGroup.position.set(0, 0.8, 0);
+
+        // Horizontal Beam
+        const beamGeo = new THREE.CylinderGeometry(0.04, 0.04, 2.2, 16);
+        const beamMesh = new THREE.Mesh(beamGeo, goldMaterial);
+        beamMesh.rotation.z = Math.PI / 2; // lie horizontally
+        beamMesh.castShadow = true;
+        beamMesh.receiveShadow = true;
+        beamGroup.add(beamMesh);
+
+        // Center Joint Sphere
+        const jointGeo = new THREE.SphereGeometry(0.1, 16, 16);
+        const jointMesh = new THREE.Mesh(jointGeo, centerJointMaterial);
+        jointMesh.position.set(0, 0, 0.08);
+        beamGroup.add(jointMesh);
+
+        // Left Pan Sub-Group
+        leftPanGroup = new THREE.Group();
+        leftPanGroup.position.set(-1.1, -0.1, 0);
+
+        const leftChain1 = new THREE.Mesh(new THREE.CylinderGeometry(0.005, 0.005, 0.9, 8), chainMaterial);
+        leftChain1.position.set(-0.15, -0.4, 0);
+        leftChain1.rotation.z = 0.3;
+        leftPanGroup.add(leftChain1);
+
+        const leftChain2 = new THREE.Mesh(new THREE.CylinderGeometry(0.005, 0.005, 0.9, 8), chainMaterial);
+        leftChain2.position.set(0.15, -0.4, 0);
+        leftChain2.rotation.z = -0.3;
+        leftPanGroup.add(leftChain2);
+
+        const leftPan = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.45, 0.03, 32), panMaterial);
+        leftPan.position.set(0, -0.85, 0);
+        leftPan.castShadow = true;
+        leftPan.receiveShadow = true;
+        leftPanGroup.add(leftPan);
+        beamGroup.add(leftPanGroup);
+
+        // Right Pan Sub-Group
+        rightPanGroup = new THREE.Group();
+        rightPanGroup.position.set(1.1, -0.1, 0);
+
+        const rightChain1 = new THREE.Mesh(new THREE.CylinderGeometry(0.005, 0.005, 0.9, 8), chainMaterial);
+        rightChain1.position.set(-0.15, -0.4, 0);
+        rightChain1.rotation.z = 0.3;
+        rightPanGroup.add(rightChain1);
+
+        const rightChain2 = new THREE.Mesh(new THREE.CylinderGeometry(0.005, 0.005, 0.9, 8), chainMaterial);
+        rightChain2.position.set(0.15, -0.4, 0);
+        rightChain2.rotation.z = -0.3;
+        rightPanGroup.add(rightChain2);
+
+        const rightPan = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.45, 0.03, 32), panMaterial);
+        rightPan.position.set(0, -0.85, 0);
+        rightPan.castShadow = true;
+        rightPan.receiveShadow = true;
+        rightPanGroup.add(rightPan);
+        beamGroup.add(rightPanGroup);
+
+        scaleGroup.add(beamGroup);
+        interactiveGroup.add(scaleGroup);
+
+
+        // 7. BUILD GAVEL MODEL
+        gavelGroup = new THREE.Group();
+        gavelGroup.position.set(0, -0.4, 0);
+
+        const soundBlockMaterial = new THREE.MeshPhysicalMaterial({
+          color: 0x18181b,
+          roughness: 0.5,
+          metalness: 0.2,
+          clearcoat: 0.8,
+          clearcoatRoughness: 0.2
+        });
+        const handleWoodMaterial = new THREE.MeshPhysicalMaterial({
+          color: 0x27272a,
+          roughness: 0.3,
+          metalness: 0.8,
+          clearcoat: 0.5
+        });
+        const headWoodMaterial = new THREE.MeshPhysicalMaterial({
+          color: 0x1e1b4b,
+          roughness: 0.4,
+          metalness: 0.1,
+          clearcoat: 0.8
+        });
+
+        // Sound Block
+        const soundBlock = new THREE.Mesh(new THREE.CylinderGeometry(0.9, 1.0, 0.25, 32), soundBlockMaterial);
+        soundBlock.position.set(0, -0.8, 0);
+        soundBlock.castShadow = true;
+        soundBlock.receiveShadow = true;
+        gavelGroup.add(soundBlock);
+
+        // Sound Block golden ring
+        const blockRing = new THREE.Mesh(new THREE.CylinderGeometry(0.85, 0.85, 0.02, 32), goldMaterial);
+        blockRing.position.set(0, -0.68, 0);
+        gavelGroup.add(blockRing);
+
+        // Gavel head & handle (rotates / swings)
+        gavelMovingGroup = new THREE.Group();
+        gavelMovingGroup.position.set(0, -0.1, -0.2);
+        gavelMovingGroup.rotation.set(-0.4, 0, 0.2);
+
+        // Handle
+        const handleMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.05, 1.2, 16), handleWoodMaterial);
+        handleMesh.position.set(0, 0, 0.6);
+        handleMesh.rotation.x = Math.PI / 2;
+        handleMesh.castShadow = true;
+        gavelMovingGroup.add(handleMesh);
+
+        // Gold Accent Tip
+        const tipMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.05, 16), goldMaterial);
+        tipMesh.position.set(0, 0, 1.22);
+        tipMesh.rotation.x = Math.PI / 2;
+        gavelMovingGroup.add(tipMesh);
+
+        // Gavel Head cylinder
+        const headMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 0.45, 24), headWoodMaterial);
+        headMesh.rotation.z = Math.PI / 2;
+        headMesh.castShadow = true;
+        gavelMovingGroup.add(headMesh);
+
+        // Head Left gold ring
+        const ringL = new THREE.Mesh(new THREE.CylinderGeometry(0.182, 0.182, 0.03, 24), goldMaterial);
+        ringL.position.set(-0.15, 0, 0);
+        ringL.rotation.z = Math.PI / 2;
+        gavelMovingGroup.add(ringL);
+
+        // Head Right gold ring
+        const ringR = new THREE.Mesh(new THREE.CylinderGeometry(0.182, 0.182, 0.03, 24), goldMaterial);
+        ringR.position.set(0.15, 0, 0);
+        ringR.rotation.z = Math.PI / 2;
+        gavelMovingGroup.add(ringR);
+
+        gavelGroup.add(gavelMovingGroup);
+        interactiveGroup.add(gavelGroup);
+
+
+        // 8. BUILD BOOKS MODEL
+        booksGroup = new THREE.Group();
+        booksGroup.position.set(0, -0.2, 0);
+
+        const pagesMaterial = new THREE.MeshStandardMaterial({
+          color: 0xfafaf9,
+          roughness: 0.7
+        });
+        const spineLineMaterial = new THREE.MeshStandardMaterial({
+          color: 0xfbbf24,
+          metalness: 0.9,
+          roughness: 0.1
+        });
+
+        // Book 1: Bottom (Burgundy)
+        const book1Group = new THREE.Group();
+        book1Group.position.set(0, -0.6, 0);
+        book1Group.rotation.y = -0.1;
+        
+        const book1Pages = new THREE.Mesh(new THREE.BoxGeometry(1.3, 0.18, 1.0), pagesMaterial);
+        book1Pages.position.set(0.05, 0, 0);
+        book1Pages.castShadow = true;
+        book1Pages.receiveShadow = true;
+        book1Group.add(book1Pages);
+
+        const book1Cover = new THREE.Mesh(new THREE.BoxGeometry(1.35, 0.22, 1.05), new THREE.MeshPhysicalMaterial({
+          color: 0x450a0a,
+          roughness: 0.6,
+          metalness: 0.1,
+          clearcoat: 0.3
+        }));
+        book1Cover.position.set(-0.05, 0, 0);
+        book1Cover.castShadow = true;
+        book1Group.add(book1Cover);
+
+        const book1Spine = new THREE.Mesh(new THREE.BoxGeometry(0.01, 0.23, 0.95), spineLineMaterial);
+        book1Spine.position.set(-0.73, 0, 0);
+        book1Group.add(book1Spine);
+        booksGroup.add(book1Group);
+
+        // Book 2: Middle (Navy Blue)
+        const book2Group = new THREE.Group();
+        book2Group.position.set(0, -0.38, 0);
+        book2Group.rotation.y = 0.15;
+
+        const book2Pages = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.18, 0.9), pagesMaterial);
+        book2Pages.position.set(0.05, 0, 0);
+        book2Pages.castShadow = true;
+        book2Pages.receiveShadow = true;
+        book2Group.add(book2Pages);
+
+        const book2Cover = new THREE.Mesh(new THREE.BoxGeometry(1.25, 0.22, 0.95), new THREE.MeshPhysicalMaterial({
+          color: 0x0f172a,
+          roughness: 0.5,
+          metalness: 0.1,
+          clearcoat: 0.3
+        }));
+        book2Cover.position.set(-0.03, 0, 0);
+        book2Cover.castShadow = true;
+        book2Group.add(book2Cover);
+
+        const book2Spine = new THREE.Mesh(new THREE.BoxGeometry(0.01, 0.23, 0.85), spineLineMaterial);
+        book2Spine.position.set(-0.66, 0, 0);
+        book2Group.add(book2Spine);
+        booksGroup.add(book2Group);
+
+        // Book 3: Top (Forest Green - slides on hover)
+        topBookGroup = new THREE.Group();
+        topBookGroup.position.set(0, -0.16, 0);
+        topBookGroup.rotation.y = 0.05;
+
+        const book3Pages = new THREE.Mesh(new THREE.BoxGeometry(1.1, 0.18, 0.8), pagesMaterial);
+        book3Pages.position.set(0.04, 0, 0);
+        book3Pages.castShadow = true;
+        book3Pages.receiveShadow = true;
+        topBookGroup.add(book3Pages);
+
+        const book3Cover = new THREE.Mesh(new THREE.BoxGeometry(1.15, 0.22, 0.85), new THREE.MeshPhysicalMaterial({
+          color: 0x064e3b,
+          roughness: 0.5,
+          metalness: 0.1,
+          clearcoat: 0.3
+        }));
+        book3Cover.position.set(-0.02, 0, 0);
+        book3Cover.castShadow = true;
+        topBookGroup.add(book3Cover);
+
+        const book3Spine = new THREE.Mesh(new THREE.BoxGeometry(0.01, 0.23, 0.75), spineLineMaterial);
+        book3Spine.position.set(-0.6, 0, 0);
+        topBookGroup.add(book3Spine);
+        
+        booksGroup.add(topBookGroup);
+        interactiveGroup.add(booksGroup);
+
+
+        // Initialize visible state
+        setActiveObject('gavel');
+
+        // 9. EVENT LISTENERS
+        // Mouse Move for Parallax and Raycasting
+        window.addEventListener('mousemove', (e) => {
+          const rect = renderer.domElement.getBoundingClientRect();
+          mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+          mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+        });
+
+        // Click on Canvas to swing Gavel
+        renderer.domElement.addEventListener('click', () => {
+          if (activeObjectState === 'gavel' && !isStriking) {
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(gavelMovingGroup.children, true);
+            if (intersects.length > 0) {
+              isStriking = true;
+              strikeStartTime = performance.now();
+            }
+          }
+        });
+
+        // Window resize
+        window.addEventListener('resize', () => {
+          const w = container.clientWidth;
+          const h = container.clientHeight;
+          camera.aspect = w / h;
+          camera.updateProjectionMatrix();
+          renderer.setSize(w, h);
+        });
+
+        // Start render loop
+        requestAnimationFrame(animate);
+      }
+
+      // Toggle active 3D model
+      function setActiveObject(objId) {
+        activeObjectState = objId;
+        
+        // Update 3D visibility
+        if (scaleGroup) scaleGroup.visible = (objId === 'scale');
+        if (gavelGroup) gavelGroup.visible = (objId === 'gavel');
+        if (booksGroup) booksGroup.visible = (objId === 'books');
+
+        // Reset positions
+        if (objId === 'gavel' && gavelMovingGroup) {
+          gavelMovingGroup.rotation.set(-0.4, 0, 0.2);
+          gavelMovingGroup.position.set(0, -0.1, -0.2);
+          isStriking = false;
+        } else if (objId === 'books' && topBookGroup) {
+          topBookGroup.position.set(0, -0.16, 0);
+          topBookGroup.rotation.y = 0.05;
+          booksHovered = false;
+        }
+
+        // Update button styles
+        const btns = ['scale', 'gavel', 'books'];
+        btns.forEach(b => {
+          const el = document.getElementById('toggle-' + b);
+          if (el) {
+            if (b === objId) {
+              el.style.background = 'rgba(255, 255, 255, 0.08)';
+              el.style.color = '#fff';
+            } else {
+              el.style.background = 'transparent';
+              el.style.color = 'var(--text-secondary)';
+            }
+          }
+        });
+      }
+
+      // ThreeJS Animation Loop
+      function animate(time) {
+        requestAnimationFrame(animate);
+
+        const t = time / 1000;
+
+        // Mouse Parallax movement
+        if (interactiveGroup) {
+          interactiveGroup.rotation.y = THREE.MathUtils.lerp(interactiveGroup.rotation.y, mouse.x * 0.3, 0.05);
+          interactiveGroup.rotation.x = THREE.MathUtils.lerp(interactiveGroup.rotation.x, -mouse.y * 0.2, 0.05);
+        }
+
+        // 1. Scale Tilting & Floating animations
+        if (scaleGroup && scaleGroup.visible) {
+          beamGroup.rotation.z = THREE.MathUtils.lerp(beamGroup.rotation.z, targetTiltAngle, 0.05);
+          leftPanGroup.rotation.z = -beamGroup.rotation.z;
+          rightPanGroup.rotation.z = -beamGroup.rotation.z;
+          beamGroup.position.y = 0.8 + Math.sin(t * 1.5) * 0.05;
+        }
+
+        // 2. Gavel striking & floating animations
+        if (gavelGroup && gavelGroup.visible) {
+          if (isStriking) {
+            const elapsed = (performance.now() - strikeStartTime) / 1000;
+            const duration = 0.5;
+            if (elapsed >= duration) {
+              isStriking = false;
+              gavelMovingGroup.rotation.x = -0.4;
+            } else {
+              const progress = elapsed / duration;
+              const swing = Math.sin(progress * Math.PI);
+              gavelMovingGroup.rotation.x = -0.4 + swing * 0.9;
+            }
+          } else {
+            gavelMovingGroup.position.y = -0.1 + Math.sin(t * 1.8) * 0.04;
+          }
+        }
+
+        // 3. Books hovering & sliding animations
+        if (booksGroup && booksGroup.visible) {
+          const targetX = booksHovered ? -0.2 : 0;
+          const targetRotY = booksHovered ? 0.15 : 0.05;
+          
+          topBookGroup.position.x = THREE.MathUtils.lerp(topBookGroup.position.x, targetX, 0.1);
+          topBookGroup.rotation.y = THREE.MathUtils.lerp(topBookGroup.rotation.y, targetRotY, 0.1);
+
+          booksGroup.position.y = -0.2 + Math.sin(t * 1.2) * 0.03;
+        }
+
+        // Raycasting for interactive mouse pointer feedback
+        if (renderer) {
+          raycaster.setFromCamera(mouse, camera);
+          if (booksGroup && booksGroup.visible) {
+            const intersects = raycaster.intersectObjects(booksGroup.children, true);
+            booksHovered = intersects.length > 0;
+            renderer.domElement.style.cursor = booksHovered ? 'pointer' : 'default';
+          } else if (gavelGroup && gavelGroup.visible) {
+            const intersects = raycaster.intersectObjects(gavelMovingGroup.children, true);
+            renderer.domElement.style.cursor = (intersects.length > 0) ? 'pointer' : 'default';
+          } else {
+            renderer.domElement.style.cursor = 'default';
+          }
+        }
+
+        if (controls) controls.update();
+        if (renderer && scene && camera) renderer.render(scene, camera);
+      }
+
+      // Initialize ThreeJS once page loads
+      window.addEventListener('DOMContentLoaded', () => {
+        initThree();
+        loadMetrics();
       });
     </script>
   </body>

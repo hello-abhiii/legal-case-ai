@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, validator
 import pandas as pd
 import pickle
+import json
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -113,6 +114,25 @@ def analyze_case(case: CaseInput):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Analysis failed: {str(e)}")
 
+@app.get("/metrics")
+def get_metrics():
+    """
+    Returns the latest model evaluation numbers (accuracy, precision, recall,
+    F1, CV folds, dataset distribution) written by scripts/train.py on the
+    most recent retrain. The frontend fetches this instead of hardcoding
+    numbers, so the live site always matches whatever model is deployed.
+    """
+    try:
+        with open("models/metrics.json", "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        raise HTTPException(
+            status_code=404,
+            detail="No metrics.json found. Run scripts/train.py to generate it.",
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Could not read metrics: {str(e)}")
+
 @app.get("/cases")
 def get_all_cases():
     try:
@@ -123,3 +143,4 @@ def get_all_cases():
 @app.get("/history")
 def get_history():
     return {"message": "History available in local version with PostgreSQL"}
+
