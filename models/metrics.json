@@ -14,6 +14,7 @@
   "total_cases": 4563,
   "prediction_cases": 4563,
   "ipc_sections": 983,
+  "ipc_sections_major": 34,
   "outcome_distribution": {
     "Conviction": 2450,
     "Acquittal": 2113
@@ -27,5 +28,5 @@
     "IPC 5": 108,
     "Other": 3421
   },
-  "trained_at": "2026-07-16T06:37:11.245184+00:00"
+  "trained_at": "2026-07-20T06:01:43.353997+00:00"
 }

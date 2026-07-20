@@ -128,6 +128,7 @@ metrics = {
     "total_cases": int(len(all_cases)),
     "prediction_cases": int(len(prediction_cases)),
     "ipc_sections": int(prediction_cases["section"].nunique()),
+    "ipc_sections_major": int((section_counts >= 20).sum()),
     "outcome_distribution": {str(k): int(v) for k, v in outcome_counts.items()},
     "section_distribution": section_distribution,
     "trained_at": datetime.now(timezone.utc).isoformat(),

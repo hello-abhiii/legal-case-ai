@@ -566,7 +566,7 @@
                 <div style="width: 1px; background: rgba(255,255,255,0.08);"></div>
                 <div>
                   <div id="hero-ipc-sections" style="font-size: 18px; font-weight: 700; color: #fff; font-family: var(--font-heading);">29</div>
-                  <div style="font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;">IPC Sections</div>
+                  <div style="font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;">Major IPC Sections</div>
                 </div>
               </div>
             </div>
@@ -900,7 +900,7 @@
                       <h4 style="font-size: 13px; font-weight: 600; color: #fff; margin: 0 0 4px;">Model Performance</h4>
                       <p style="font-size: 12px; color: var(--text-secondary); margin: 0; line-height: 1.6;">
                         Achieves a <strong>~<span id="about-accuracy">94.0</span>% average cross-validation accuracy</strong> on testing folds containing <span id="about-case-count">100</span> 
-                        curated Indian trial summaries across <span id="about-ipc-count">29</span> Indian Penal Code sections.
+                        curated Indian trial summaries spanning <span id="about-ipc-count">29</span> major Indian Penal Code sections (<span id="about-ipc-total">983</span> distinct sections appear in the full training set).
                       </p>
                     </div>
                   </div>
@@ -998,7 +998,7 @@
       let modelMetrics = {
         accuracy: 94.0, precision: 94.6, recall: 94.0, f1_score: 94.0,
         cv_fold_accuracies: [95, 100, 90, 100, 85],
-        total_cases: 4563, prediction_cases: 100, ipc_sections: 29,
+        total_cases: 4563, prediction_cases: 100, ipc_sections: 29, ipc_sections_major: 29,
         outcome_distribution: { Conviction: 50, Acquittal: 16 },
         section_distribution: { 'IPC 379': 10, 'IPC 420': 10, 'IPC 323': 8, 'IPC 380': 6, 'IPC 468': 6, 'IPC 392': 4, Other: 56 },
       };
@@ -1026,7 +1026,7 @@
 
         set('hero-f1', `${m.f1_score}%`);
         set('hero-db-cases', formatCaseCount(m.total_cases));
-        set('hero-ipc-sections', m.ipc_sections);
+        set('hero-ipc-sections', m.ipc_sections_major);
 
         set('stat-accuracy', `${m.accuracy}%`);
         set('stat-precision', `${m.precision}%`);
@@ -1035,7 +1035,8 @@
 
         set('about-accuracy', m.accuracy);
         set('about-case-count', m.prediction_cases);
-        set('about-ipc-count', m.ipc_sections);
+        set('about-ipc-count', m.ipc_sections_major);
+        set('about-ipc-total', m.ipc_sections);
 
         // Charts on the Stats page read from modelMetrics too - refresh them if built already.
         if (outcomeChart || sectionChart || accuracyChart) initCharts();
