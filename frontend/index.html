@@ -2019,7 +2019,11 @@
 
       // Initialize ThreeJS once page loads
       window.addEventListener('DOMContentLoaded', () => {
-        initThree();
+        try {
+          initThree();
+        } catch (err) {
+          console.warn('3D scene failed to initialize (non-fatal):', err);
+        }
         loadMetrics();
       });
     </script>
